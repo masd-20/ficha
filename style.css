@@ -1,237 +1,325 @@
 /* Estilos globais */
 body {
     font-family: 'Noto Serif', serif;
-    background-color: #f4f1de; /* Bege claro */
-    color: #3e2723; /* Castanho escuro */
-    margin: 0;
-    padding: 20px;
+    background-color: #f5f0e1; /* Bege claro */
+    color: #3d3d3d; /* Cinza escuro */
+    margin: 20px;
     line-height: 1.6;
 }
 
 .container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto; /* Centraliza e adiciona margem */
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Layout responsivo em colunas */
+    grid-gap: 30px;
 }
 
-h1, h2, h3, h4 {
-    color: #5d4037; /* Castanho médio */
-    margin-top: 1.5em; /* Espaçamento acima dos títulos */
-    margin-bottom: 0.5em; /* Espaçamento abaixo dos títulos */
-    border-bottom: 2px solid #a1887f; /* Linha abaixo dos títulos */
-    padding-bottom: 0.2em; /* Espaçamento entre o texto e a linha */
-}
-
-/* Estilos do cabeçalho */
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap; /* Permite que os elementos quebrem para a linha seguinte em telas menores */
-    margin-bottom: 20px;
+    grid-column: 1 / -1; /* Ocupa toda a largura */
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #b8860b; /* Borda dourada */
 }
 
 header h1 {
-    flex: 1 1 100%; /* Garante que o título ocupe a largura total */
-    text-align: center;
-    border-bottom: none; /* Remove a linha abaixo do título principal */
+    font-size: 2.5em;
+    color: #b8860b;
+    margin-bottom: 10px;
 }
 
 .header-info {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 20px; /* Espaçamento entre linhas e colunas */
-    justify-content: space-around; /* Distribui os elementos uniformemente */
-    width: 100%; /* Garante que ocupe a largura total */
+    gap: 20px;
+    justify-content: center;
 }
 
 .form-group {
-    flex: 1 1 200px; /* Tamanho flexível, mas com largura mínima */
+    flex: 1 1 250px; /* Tamanho flexível com largura mínima */
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
-    color: #795548; /* Castanho claro */
+    color: #555;
 }
 
 .form-group input[type="text"],
-.form-group input[type="number"] {
+.form-group input[type="number"],
+.form-group select {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; /* Garante que o preenchimento não aumente o tamanho do elemento */
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-gap: 30px;
+}
+
+section {
+    padding: 25px;
+    border: 1px solid #a9a9a9; /* Borda cinza */
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+section h2, section h3, section h4 {
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #d2b48c; /* Borda marrom clara */
+    padding-bottom: 8px;
+    color: #5d4037; /* Castanho */
 }
 
 /* Estilos das habilidades */
 .abilities {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Cria colunas flexíveis */
+    grid-column: 1 / span 1;
+    display: flex;
+    flex-direction: column;
     gap: 20px;
-    margin-bottom: 20px;
 }
 
 .ability {
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #fff;
+    border: 1px solid #8fbc8f; /* Verde musgo */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #e0eee0; /* Verde claro */
 }
 
 .ability h2 {
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-    text-align: center;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #a9a9a9;
+    padding-bottom: 10px;
+    color: #2e8b57; /* Verde */
 }
 
-.score, .modifier, .saving-throw, .skills {
+.ability .score, .ability .modifier {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-.score label, .modifier label {
+.ability .score label, .ability .modifier label {
     font-weight: bold;
-    margin-bottom: 5px;
+    font-size: 1.1em;
+    color: #555;
 }
 
-.score input, .modifier input {
-    padding: 8px;
+.ability input[type="number"], .ability input[type="text"] {
+    width: 80px;
+    margin: 10px auto;
+    text-align: center;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 50px;
+    border-radius: 5px;
+    font-size: 1.2em;
 }
 
-.skills .skill {
+.ability .saving-throw, .ability .skills {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.ability .skill {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
-.skills .skill input[type="checkbox"] {
-    margin-right: 5px;
+.ability .skill input[type="checkbox"] {
+    margin-right: 8px;
 }
 
 /* Estilos de combate */
 .combat-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
-    margin-bottom: 20px;
 }
 
 .combat-stats > div {
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #deb887; /* Marrom claro */
+    border-radius: 10px;
+    background-color: #f0e68c; /* Amarelo claro */
+    text-align: center;
 }
 
-/* Estilos de outras informações */
+.combat-stats h3 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #d2b48c;
+    padding-bottom: 5px;
+    color: #8b4513; /* Marrom sela */
+}
+
+.hit-points {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.hit-points input[type="number"] {
+    width: 120px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.death-saves {
+    text-align: center;
+}
+
+.death-saves .successes, .death-saves .failures {
+    margin-bottom: 10px;
+}
+
+/* Outras informações */
 .other-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    margin-bottom: 20px;
+    display: flex;
+    gap: 30px;
 }
 
 .other-info > div {
-    border: 1px solid #ccc;
-    padding: 15px;
+    flex: 1;
+    padding: 20px;
+    border: 1px solid #a9a9a9;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: #f9f9f9;
 }
 
-/* Estilos de personalidade */
+/* Personalidade */
 .personality {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
-    margin-bottom: 20px;
 }
 
 .personality > div {
-    border: 1px solid #ccc;
-    padding: 15px;
+    padding: 20px;
+    border: 1px solid #a9a9a9;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: #f9f9f9;
 }
 
-.personality textarea {
+.personality textarea, .equipment textarea, .features-traits textarea, .proficiencies-languages textarea, .attacks-spellcasting textarea, .spell-levels textarea {
     width: 100%;
-    min-height: 100px;
-    padding: 8px;
+    min-height: 120px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     box-sizing: border-box;
-    resize: vertical; /* Permite redimensionar verticalmente */
+    font-size: 1em;
+    resize: vertical;
 }
 
-/* Estilos de ataques e conjuração */
+/* Ataques e Conjuração */
 .attacks-spellcasting {
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #fff;
-    margin-bottom: 20px;
+    grid-column: 1 / -1;
 }
 
-.spellcasting-info {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 20px;
-    justify-content: space-around;
+.attacks-spellcasting h3 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 15px;
+}
+
+.attacks-spellcasting .spellcasting-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
     margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #deb887;
+    border-radius: 8px;
+    background-color: #f0e68c;
+}
+
+.attacks-spellcasting .spellcasting-info .form-group {
+    margin-bottom: 10px;
+}
+
+.attacks-spellcasting h4 {
+    margin-top: 25px;
+    border-bottom: 1px solid #d2b48c;
+    padding-bottom: 10px;
+    color: #5d4037;
 }
 
 .spell-levels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
     margin-top: 20px;
 }
 
 .spell-level {
-    border-top: 1px solid #ccc;
-    padding-top: 15px;
-    margin-top: 15px;
+    padding: 20px;
+    border: 1px solid #deb887;
+    border-radius: 8px;
+    background-color: #f0e68c;
 }
 
-.slots {
+.spell-level .slots {
     display: flex;
     align-items: center;
+    gap: 15px;
     margin-bottom: 10px;
 }
 
-.slots label {
-    margin-right: 10px;
+.spell-level .slots label {
     font-weight: bold;
+    color: #8b4513;
 }
 
-.slots input[type="number"] {
-    width: 50px;
+.spell-level .slots input[type="number"] {
+    width: 70px;
     padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
+    font-size: 1em;
 }
 
-.spells-list {
+.spell-level .spells-list {
     display: flex;
     flex-direction: column;
+    gap: 8px;
 }
 
-.spells-list input[type="text"] {
+.spell-level .spells-list input[type="text"] {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 5px;
+    border-radius: 5px;
     box-sizing: border-box;
+    font-size: 1em;
 }
 
-.spells-list input[type="checkbox"] {
-    margin-right: 5px;
+.spell-level .spells-list label {
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+}
+
+.spell-level .spells-list input[type="checkbox"] {
+    margin-right: 8px;
 }
