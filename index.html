@@ -1,70 +1,98 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ficha de Personagem D&D 5e</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Personagem D&D</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Ficha de Personagem - Dungeons & Dragons 5e</h1>
-    </header>
+    <div class="container">
+        <header>
+            <h1>Ficha de Personagem</h1>
+        </header>
 
-    <section class="input-section">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" placeholder="Nome do personagem">
+        <section id="informacoes-basicas">
+            <h2>Informações Básicas</h2>
+            <div class="campo">
+                <label for="nome">Nome do Personagem:</label>
+                <input type="text" id="nome" name="nome">
+            </div>
+            <div class="campo">
+                <label for="classe">Classe:</label>
+                <select id="classe" name="classe">
+                    <option value="">Selecione a Classe</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label for="nivel">Nível:</label>
+                <input type="number" id="nivel" name="nivel" min="1" value="1">
+            </div>
+            <div class="campo">
+                <label for="raca">Raça:</label>
+                <input type="text" id="raca" name="raca">
+            </div>
+            <div class="campo">
+                <label for="tendencia">Tendência:</label>
+                <input type="text" id="tendencia" name="tendencia">
+            </div>
+            <div class="campo">
+                <label for="antecedente">Antecedente:</label>
+                <input type="text" id="antecedente" name="antecedente">
+            </div>
+        </section>
 
-      <label for="raca">Raça:</label>
-      <input type="text" id="raca" placeholder="Raça do personagem">
+        <section id="atributos">
+            <h2>Atributos</h2>
+            <div class="atributo">
+                <label for="forca">Força:</label>
+                <input type="number" id="forca" name="forca" min="1" value="10">
+                <span class="modificador" id="mod-forca"></span>
+            </div>
+            <div class="atributo">
+                <label for="destreza">Destreza:</label>
+                <input type="number" id="destreza" name="destreza" min="1" value="10">
+                <span class="modificador" id="mod-destreza"></span>
+            </div>
+            <div class="atributo">
+                <label for="constituicao">Constituição:</label>
+                <input type="number" id="constituicao" name="constituicao" min="1" value="10">
+                <span class="modificador" id="mod-constituicao"></span>
+            </div>
+            <div class="atributo">
+                <label for="inteligencia">Inteligência:</label>
+                <input type="number" id="inteligencia" name="inteligencia" min="1" value="10">
+                <span class="modificador" id="mod-inteligencia"></span>
+            </div>
+            <div class="atributo">
+                <label for="sabedoria">Sabedoria:</label>
+                <input type="number" id="sabedoria" name="sabedoria" min="1" value="10">
+                <span class="modificador" id="mod-sabedoria"></span>
+            </div>
+            <div class="atributo">
+                <label for="carisma">Carisma:</label>
+                <input type="number" id="carisma" name="carisma" min="1" value="10">
+                <span class="modificador" id="mod-carisma"></span>
+            </div>
+        </section>
 
-      <label for="antecedente">Antecedente:</label>
-      <input type="text" id="antecedente" placeholder="Antecedente">
+        <section id="pericias">
+            <h2>Perícias</h2>
+            </section>
 
-      <label for="classe">Classe:</label>
-      <select id="classe">
-        <option value="">Selecione uma classe</option>
-        <option>Artífice</option>
-        <option>Bárbaro</option>
-        <option>Bardo</option>
-        <option>Bruxo</option>
-        <option>Clérigo</option>
-        <option>Druida</option>
-        <option>Feiticeiro</option>
-        <option>Guerreiro</option>
-        <option>Ladino</option>
-        <option>Mago</option>
-        <option>Monge</option>
-        <option>Paladino</option>
-        <option>Patrulheiro</option>
-      </select>
+        <section id="habilidades">
+            <h2>Habilidades de Classe e Recursos</h2>
+            </section>
 
-      <label for="nivel">Nível:</label>
-      <select id="nivel">
-        <option value="">Selecione o nível</option>
-        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
-      </select>
+        <section id="magias">
+            <h2>Magias</h2>
+            </section>
 
-      <label for="hp">Pontos de Vida (HP):</label>
-      <input type="number" id="hp" placeholder="HP total">
+        <section id="equipamentos">
+            <h2>Equipamentos</h2>
+            </section>
+    </div>
 
-      <label for="ca">Classe de Armadura (CA):</label>
-      <input type="number" id="ca" placeholder="Classe de Armadura">
-    </section>
-
-    <section class="output-section">
-      <h2>Características da Classe</h2>
-      <div id="output">
-        <p>Selecione uma classe e um nível para ver os detalhes.</p>
-      </div>
-    </section>
-
-    <footer>
-      <p>Desenvolvido por você &copy; 2025</p>
-    </footer>
-  </div>
-
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

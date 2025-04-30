@@ -1,82 +1,79 @@
-/* style.css - tema escuro inspirado em grimório de D&D */
-
 body {
-  margin: 0;
-  font-family: 'Georgia', serif;
-  background-color: #0d0d0d;
-  background-image: url('https://www.transparenttextures.com/patterns/purty-wood.png');
-  color: #f0e6d2;
-  background-size: cover;
+    font-family: sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 .container {
-  max-width: 960px;
-  margin: auto;
-  padding: 40px;
-  background-color: #1c1b19;
-  border: 2px solid #8b0000;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(139, 0, 0, 0.7);
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 960px;
 }
 
-header h1 {
-  font-size: 2.5em;
-  text-align: center;
-  color: #e63946;
-  font-variant: small-caps;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
+header {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-footer {
-  text-align: center;
-  color: #aaa;
-  margin-top: 40px;
-  font-size: 0.9em;
+h1, h2 {
+    color: #333;
 }
 
-.input-section, .output-section {
-  margin-bottom: 40px;
+section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-label {
-  display: block;
-  margin: 12px 0 5px;
-  font-weight: bold;
-  color: #f2c57c;
+.campo {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
 }
 
-input[type="text"], input[type="number"], select {
-  width: 100%;
-  padding: 10px;
-  background-color: #2a2a2a;
-  color: #f0e6d2;
-  border: 1px solid #f2c57c;
-  border-radius: 5px;
-  font-size: 1em;
-  box-sizing: border-box;
+.campo label {
+    width: 150px;
+    margin-right: 10px;
+    text-align: right;
 }
 
-#output ul {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 20px;
+.campo input[type="text"],
+.campo input[type="number"],
+.campo select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex-grow: 1;
 }
 
-#output ul li {
-  margin: 10px 0;
-  padding: 10px 15px;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-left: 5px solid #d4af37;
-  border-radius: 4px;
+.atributo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-#output strong {
-  color: #f2c57c;
-  font-weight: bold;
+.atributo label {
+    width: 100px;
+    margin-right: 10px;
+    text-align: right;
 }
 
-select:focus, input:focus {
-  outline: none;
-  box-shadow: 0 0 5px #f2c57c;
+.atributo input[type="number"] {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.atributo .modificador {
+    font-size: 0.9em;
+    color: #777;
 }
