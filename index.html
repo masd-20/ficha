@@ -1,87 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha de Personagem D&D</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ficha Online D&D 5e</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Ficha de Personagem - Dungeons & Dragons</h1>
-        </header>
-        
-        <form id="character-form">
-            <section class="section">
-                <h2>Informações do Personagem</h2>
-                <label for="name">Nome:</label>
-                <input type="text" id="name" placeholder="Nome do personagem" required>
-                
-                <label for="class">Classe:</label>
-                <select id="class" required>
-                    <option value="">Selecione uma classe</option>
-                    <option value="Artífice">Artífice</option>
-                    <option value="Bárbaro">Bárbaro</option>
-                    <option value="Bardo">Bardo</option>
-                    <option value="Bruxo">Bruxo</option>
-                    <option value="Clérigo">Clérigo</option>
-                    <option value="Druida">Druida</option>
-                    <option value="Feiticeiro">Feiticeiro</option>
-                    <option value="Guerreiro">Guerreiro</option>
-                    <option value="Ladino">Ladino</option>
-                    <option value="Mago">Mago</option>
-                    <option value="Monge">Monge</option>
-                    <option value="Paladino">Paladino</option>
-                    <option value="Patrulheiro">Patrulheiro</option>
-                </select>
+  <div class="container">
+    <header>
+      <h1>Ficha Online - D&D 5e</h1>
+    </header>
 
-                <label for="level">Nível:</label>
-                <input type="number" id="level" min="1" max="20" placeholder="Nível" required>
-            </section>
-            
-            <section class="section">
-                <h2>Características</h2>
-                <label for="hp">HP:</label>
-                <input type="number" id="hp" min="1" placeholder="Pontos de Vida" required>
-                
-                <label for="armor">Classe de Armadura:</label>
-                <input type="number" id="armor" min="1" placeholder="Classe de Armadura" required>
-            </section>
-            
-            <section class="section">
-                <h2>Espaços de Magia</h2>
-                <div id="magic-spaces">
-                    <label for="spell-level-1">Nível 1:</label>
-                    <input type="number" id="spell-level-1" min="0" value="0" placeholder="Espaços de Magia Nível 1">
-                    
-                    <label for="spell-level-2">Nível 2:</label>
-                    <input type="number" id="spell-level-2" min="0" value="0" placeholder="Espaços de Magia Nível 2">
+    <section class="section">
+      <label for="classe">Classe:</label>
+      <select id="classe">
+        <option value="">Selecione uma classe</option>
+        <option value="Bardo">Bardo</option>
+        <option value="Clérigo">Clérigo</option>
+        <option value="Feiticeiro">Feiticeiro</option>
+        <option value="Mago">Mago</option>
+        <option value="Paladino">Paladino</option>
+      </select>
 
-                    <label for="spell-level-3">Nível 3:</label>
-                    <input type="number" id="spell-level-3" min="0" value="0" placeholder="Espaços de Magia Nível 3">
+      <label for="nivel">Nível:</label>
+      <select id="nivel">
+        <option value="">Selecione o nível</option>
+        <!-- Níveis 1 a 20 -->
+        <!-- Você pode copiar esta linha para adicionar até o nível 20 -->
+        <!-- Exemplo até o 5 para simplificar -->
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </section>
 
-                    <label for="spell-level-4">Nível 4:</label>
-                    <input type="number" id="spell-level-4" min="0" value="0" placeholder="Espaços de Magia Nível 4">
+    <section class="section" id="dados-da-classe">
+      <h2>Características da Classe</h2>
+      <div id="output">
+        <p>Selecione uma classe e nível válidos.</p>
+      </div>
+    </section>
 
-                    <label for="spell-level-5">Nível 5:</label>
-                    <input type="number" id="spell-level-5" min="0" value="0" placeholder="Espaços de Magia Nível 5">
-                </div>
-            </section>
-
-            <section class="section" id="recursos-consumiveis">
-                <h2>Recursos da Classe</h2>
-                <div id="class-resources"></div>
-            </section>
-            
-            <button type="submit">Criar Ficha</button>
-        </form>
-
-        <footer>
-            <p>&copy; 2025 D&D Ficha de Personagem</p>
-        </footer>
-    </div>
-    
-    <script src="script.js"></script>
+    <footer>
+      <p>&copy; 2025 Ficha D&D Online</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

@@ -1,34 +1,62 @@
-document.getElementById("class").addEventListener("change", function () {
-    const classe = this.value;
-    const container = document.getElementById("class-resources");
-    container.innerHTML = "";
+const dados = {
+  "Bardo": {
+    "1": {
+      "Tipo de Conjuração": "Completa",
+      "Bônus de Proficiência": 2,
+      "Mod. de Ataque Mágico": "Prof + Car",
+      "CD de Magia": "8 + Prof + Car",
+      "Truques Conhecidos": 2,
+      "Magias Conhecidas/Preparadas": 4,
+      "Espaços de Magia": { "Nível 1": 2 }
+    },
+    "2": {
+      "Tipo de Conjuração": "Completa",
+      "Bônus de Proficiência": 2,
+      "Mod. de Ataque Mágico": "Prof + Car",
+      "CD de Magia": "8 + Prof + Car",
+      "Truques Conhecidos": 2,
+      "Magias Conhecidas/Preparadas": 5,
+      "Espaços de Magia": { "Nível 1": 3 }
+    }
+  },
+  "Clérigo": {
+    "1": {
+      "Tipo de Conjuração": "Completa",
+      "Bônus de Proficiência": 2,
+      "Mod. de Ataque Mágico": "Prof + Sab",
+      "CD de Magia": "8 + Prof + Sab",
+      "Truques Conhecidos": 3,
+      "Magias Conhecidas/Preparadas": "Sab + Nível",
+      "Espaços de Magia": { "Nível 1": 2 }
+    }
+  }
+};
 
-    const recursosPorClasse = {
-        "Artífice": ["Infusões Preparadas", "Espaços de Magia"],
-        "Bárbaro": ["Usos de Fúria"],
-        "Bardo": ["Espaços de Magia", "Inspirações Bárdicas"],
-        "Bruxo": ["Espaços de Magia de Bruxo", "Invocações"],
-        "Clérigo": ["Espaços de Magia", "Canalizar Divindade"],
-        "Druida": ["Espaços de Magia", "Transformação Selvagem"],
-        "Feiticeiro": ["Espaços de Magia", "Pontos de Feitiçaria"],
-        "Guerreiro": ["Surto de Ação", "Manobras (se aplicável)"],
-        "Ladino": ["Truques (se Arcano)", "Recursos Especiais"],
-        "Mago": ["Espaços de Magia", "Arcano Recuperado"],
-        "Monge": ["Pontos de Ki"],
-        "Paladino": ["Espaços de Magia", "Imposição das Mãos"],
-        "Patrulheiro": ["Espaços de Magia", "Truques (se aplicável)"]
-    };
+document.getElementById("classe").addEventListener("change", atualizar);
+document.getElementById("nivel").addEventListener("change", atualizar);
 
-    const recursos = recursosPorClasse[classe] || [];
+function atualizar() {
+  const classe = document.getElementById("classe").value;
+  const nivel = document.getElementById("nivel").value;
+  const output = document.getElementById("output");
 
-    recursos.forEach(recurso => {
-        const label = document.createElement("label");
-        label.textContent = recurso + ":";
-        const input = document.createElement("input");
-        input.type = "number";
-        input.min = 0;
-        input.placeholder = recurso;
-        container.appendChild(label);
-        container.appendChild(input);
-    });
-});
+  if (classe && nivel && dados[classe] && dados[classe][nivel]) {
+    const info = dados[classe][nivel];
+    let html = "<ul>";
+    for (const chave in info) {
+      if (typeof info[chave] === "object") {
+        html += `<li><strong>${chave}:</strong><ul>`;
+        for (const sub in info[chave]) {
+          html += `<li>${sub}: ${info[chave][sub]}</li>`;
+        }
+        html += "</ul></li>";
+      } else {
+        html += `<li><strong>${chave}:</strong> ${info[chave]}</li>`;
+      }
+    }
+    html += "</ul>";
+    output.innerHTML = html;
+  } else {
+    output.innerHTML = "<p>Selecione uma classe e nível válidos.</p>";
+  }
+}
