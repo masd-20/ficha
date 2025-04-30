@@ -87,7 +87,7 @@ function atualizarInfoClasse() {
         }
     }
 
-    // Controle da seção de Magias para Conjuradores (já existia)
+    // Controle da seção de Magias para Conjuradores
     const infoConjuradorDiv = document.getElementById('info-conjurador');
     if (infoClasse && infoClasse.conjurador === true && infoClasse.atributoConjuração) {
         infoConjuradorDiv.style.display = 'block';
@@ -96,6 +96,25 @@ function atualizarInfoClasse() {
         atualizarModAtaqueMagia();
     } else {
         infoConjuradorDiv.style.display = 'none';
+    }
+
+    // Mostra/esconde a seção de habilidades para não conjuradores
+    const habilidadesDiv = document.getElementById('habilidades');
+    if (infoClasse && !infoClasse.conjurador && Object.keys(infoClasse.recursos).length > 0 || (infoClasse && infoClasse.kiBasePorNivel)) {
+        habilidadesDiv.style.display = 'block';
+    } else if (infoClasse && !infoClasse.conjurador) {
+        habilidadesDiv.style.display = 'block'; // Manter visível mesmo sem recursos específicos
+    } else {
+        // Se for conjurador e não tiver recursos específicos (além de magia), pode manter visível ou ajustar conforme necessário
+        habilidadesDiv.style.display = 'block';
+    }
+
+    // Mostra/esconde a seção de magias para conjuradores
+    const magiasDiv = document.getElementById('magias');
+    if (infoClasse && infoClasse.conjurador === true) {
+        magiasDiv.style.display = 'block';
+    } else {
+        magiasDiv.style.display = 'none';
     }
 }
 
@@ -133,20 +152,4 @@ function atualizarModAtaqueMagia() {
         const atributoChave = parseInt(document.getElementById(infoClasse.atributoConjuração).value);
         const modificadorAtributo = calcularModificador(atributoChave);
         const modAtaqueMagia = bonusProficiencia + modificadorAtributo;
-        document.getElementById('mod-ataque-magia').textContent = `<span class="math-inline">\{modAtaqueMagia \>\= 0 ? '\+' \: ''\}</span>{modAtaqueMagia}`;
-    } else {
-        document.getElementById('mod-ataque-magia').textContent = '';
-    }
-}
-
-function atualizarRecursosMaximos(recurso) {
-    const classeSelecionada = document.getElementById('classe').value;
-    const nivel = parseInt(document.getElementById('nivel').value);
-    const infoClasse = infoClasses[classeSelecionada];
-
-    if (infoClasse && infoClasse.recursos && infoClasse.recursos[recurso] && infoClasse.recursos[recurso].maxBasePorNivel) {
-        const valorMaximo = infoClasse.recursos[recurso].maxBasePorNivel[nivel] || 0;
-        document.getElementById(`${recurso}-max`).value = valorMaximo;
-        document.getElementById(`${recurso}-atual`).value = valorMaximo; // Inicializa o valor atual
-    } else if (infoClasse && infoClasse.kiBasePorNivel && recurso === 'ki') {
-        const valorMaximo = infoClasse.kiBasePorNivel[nivel] || 0
+        document.getElementById('mod-ataque-magia').textContent = `<span class="math-inline">\{modAtaqueMagia \>\= 0 ? '\+' \: ''\}</span>{modAta
