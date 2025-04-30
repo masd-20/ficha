@@ -1,13 +1,13 @@
 const CLASSES_INFO = {
-    'barbaro': { conjurador: false, habilidades: [{ nome: 'Fúria', descricao: 'Entra em fúria em combate...' }] },
+    'barbaro': { conjurador: false, habilidades: [{ nome: 'Fúria', descricao: 'Entra em fúria em combate...', recursos: { furia: { maxBasePorNivel: [0, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6] } } } ] },
     'bardo': { conjurador: true, atributoConjuração: 'carisma', habilidades: [{ nome: 'Inspiração Bardica', descricao: 'Pode inspirar outros...' }] },
-    'clerigo': { conjurador: true, atributoConjuração: 'sabedoria', habilidades: [{ nome: 'Canalizar Divindade', descricao: 'Invoca o poder divino...' }] },
+    'clerigo': { conjurador: true, atributoConjuração: 'sabedoria', habilidades: [{ nome: 'Canalizar Divindade', descricao: 'Invoca o poder divino...', recursos: { canalizarDivindade: { maxBasePorNivel: [0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3] } } }] },
     'druida': { conjurador: true, atributoConjuração: 'sabedoria', habilidades: [{ nome: 'Forma Selvagem', descricao: 'Transforma-se em animais...' }] },
-    'guerreiro': { conjurador: false, habilidades: [{ nome: 'Surto de Ação', descricao: 'Realiza uma ação extra...' }, { nome: 'Segundo Fôlego', descricao: 'Recupera pontos de vida...' }] },
-    'monge': { conjurador: false, habilidades: [{ nome: 'Artes Marciais', descricao: 'Golpes desarmados aprimorados...' }, { nome: 'Ki', descricao: 'Energia espiritual para habilidades...' }] },
-    'paladino': { conjurador: true, atributoConjuração: 'carisma', habilidades: [{ nome: 'Imposição de Mãos', descricao: 'Cura com toque divino...' }, { nome: 'Golpe Divino', descricao: 'Adiciona dano radiante...' }] },
+    'guerreiro': { conjurador: false, habilidades: [{ nome: 'Surto de Ação', descricao: 'Realiza uma ação extra...', recursos: { surtoAcao: { maxBasePorNivel: [0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3] } } }, { nome: 'Segundo Fôlego', descricao: 'Recupera pontos de vida...' }] },
+    'monge': { conjurador: false, habilidades: [{ nome: 'Artes Marciais', descricao: 'Golpes desarmados aprimorados...', recursos: { ki: { maxBasePorNivel: [0, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20] } } }, { nome: 'Ki', descricao: 'Energia espiritual para habilidades...' }] },
+    'paladino': { conjurador: true, atributoConjuração: 'carisma', habilidades: [{ nome: 'Imposição de Mãos', descricao: 'Cura com toque divino...', recursos: { canalizarDivindadePaladino: { maxBasePorNivel: [0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3] } } }, { nome: 'Golpe Divino', descricao: 'Adiciona dano radiante...' }] },
     'patrulheiro': { conjurador: true, atributoConjuração: 'sabedoria', habilidades: [{ nome: 'Inimigo Favorecido', descricao: 'Bônus contra certos tipos de criaturas...' }, { nome: 'Explorador Nato', descricao: 'Habilidade em terrenos selvagens...' }] },
-    'ladino': { conjurador: false, habilidades: [{ nome: 'Ataque Furtivo', descricao: 'Dano extra em ataques sorrateiros...' }, { nome: 'Ação Bônus Astuta', descricao: 'Ações bônus adicionais...' }] },
+    'ladino': { conjurador: false, habilidades: [{ nome: 'Ataque Furtivo', descricao: 'Dano extra em ataques sorrateiros...', recursos: { pontosAstucia: { maxBasePorNivel: [0, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11] } } }, { nome: 'Ação Bônus Astuta', descricao: 'Ações bônus adicionais...' }] },
     'feiticeiro': { conjurador: true, atributoConjuração: 'carisma', habilidades: [{ nome: 'Metamagias', descricao: 'Modifica seus truques e magias...' }, { nome: 'Fonte de Magia', descricao: 'Pontos de feitiçaria...' }] },
     'mago': { conjurador: true, atributoConjuração: 'inteligencia', habilidades: [{ nome: 'Recuperação Arcana', descricao: 'Recupera espaços de magia em descanso curto...' }] }
 };
@@ -60,6 +60,22 @@ function atualizarPericias() {
     }
 }
 
+function atualizarCDMagia() {
+    const classeSelecionada = document.getElementById('classe').value;
+    const infoClasse = CLASSES_INFO[classeSelecionada];
+    const cdMagiaSpan = document.getElementById('cd-magia');
+    const bonusCD = parseInt(document.getElementById('bonus-cd').value) || 0;
+
+    if (infoClasse && infoClasse.conjurador && infoClasse.atributoConjuração) {
+        const atributoValor = parseInt(document.getElementById(infoClasse.atributoConjuração).value);
+        const modificadorAtributo = calcularModificador(atributoValor);
+        const bonusProf = getBonusProficiencia();
+        cdMagiaSpan.textContent = 8 + bonusProf + modificadorAtributo + bonusCD;
+    } else {
+        cdMagiaSpan.textContent = '';
+    }
+}
+
 function atualizarInfoClasse() {
     const classeSelecionada = document.getElementById('classe').value;
     const infoClasse = CLASSES_INFO[classeSelecionada];
@@ -67,7 +83,6 @@ function atualizarInfoClasse() {
     const magiasDiv = document.getElementById('magias');
     const infoConjuradorDiv = document.getElementById('info-conjurador');
     const atributoConjuraçãoSpan = document.getElementById('atributo-conjuração');
-    const cdMagiaSpan = document.getElementById('cd-magia');
     const modAtaqueMagiaSpan = document.getElementById('mod-ataque-magia');
 
     habilidadesDiv.innerHTML = '';
@@ -80,7 +95,16 @@ function atualizarInfoClasse() {
             habilidadesDiv.appendChild(h3);
             infoClasse.habilidades.forEach(habilidade => {
                 const p = document.createElement('p');
-                p.textContent = `${habilidade.nome}: ${habilidade.descricao}`;
+                let textoHabilidade = `${habilidade.nome}: ${habilidade.descricao}`;
+                if (habilidade.recursos) {
+                    for (const recursoNome in habilidade.recursos) {
+                        const recurso = habilidade.recursos[recursoNome];
+                        const maxBase = recurso.maxBasePorNivel[nivelPersonagem] || 0;
+                        textoHabilidade += ` (Máximo de ${recursoNome}: <span id="${recursoNome}-max">${maxBase}</span>)`;
+                        // Para controlar o uso, precisaríamos adicionar inputs e botões aqui
+                    }
+                }
+                p.innerHTML = textoHabilidade;
                 habilidadesDiv.appendChild(p);
             });
         }
@@ -91,7 +115,8 @@ function atualizarInfoClasse() {
             const atributoValor = parseInt(document.getElementById(infoClasse.atributoConjuração).value);
             const modificadorAtributo = calcularModificador(atributoValor);
             const bonusProf = getBonusProficiencia();
-            cdMagiaSpan.textContent = 8 + bonusProf + modificadorAtributo;
+            const bonusCD = parseInt(document.getElementById('bonus-cd').value) || 0;
+            document.getElementById('cd-magia').textContent = 8 + bonusProf + modificadorAtributo + bonusCD;
             modAtaqueMagiaSpan.textContent = `${modificadorAtributo + bonusProf >= 0 ? '+' : ''}${modificadorAtributo + bonusProf}`;
         }
     }
@@ -101,9 +126,9 @@ function atualizarFicha() {
     nivelPersonagem = parseInt(document.getElementById('nivel').value);
     atualizarModificadores();
     atualizarInfoClasse();
+    atualizarCDMagia();
 }
 
-// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
     const classeSelect = document.getElementById('classe');
     for (const classe in CLASSES_INFO) {

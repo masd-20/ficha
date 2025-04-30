@@ -87,6 +87,14 @@
             </div>
         </section>
 
+        <section id="defesa">
+            <h2>Defesa</h2>
+            <div class="campo">
+                <label for="ca">Classe de Armadura (CA):</label>
+                <input type="number" id="ca" name="ca" value="10">
+            </div>
+        </section>
+
         <section id="pericias">
             <h2>Perícias</h2>
             <div class="pericia">
@@ -194,10 +202,26 @@
                 <h3>Magias</h3>
                 <div id="info-conjurador">
                     <p>Atributo de Conjuração: <span id="atributo-conjuração"></span></p>
-                    <p>CD de Magia: <span id="cd-magia"></span></p>
+                    <p>CD de Magia: <span id="cd-magia"></span> + <input type="number" id="bonus-cd" name="bonus-cd" value="0" size="2" onchange="atualizarCDMagia()"> Bônus</p>
                     <p>Modificador de Ataque Mágico: <span id="mod-ataque-magia"></span></p>
                 </div>
                 </div>
+        </section>
+
+        <section id="pontos-vida">
+            <h2>Pontos de Vida</h2>
+            <div class="campo">
+                <label for="hp-max">HP Máximo:</label>
+                <input type="number" id="hp-max" name="hp-max" value="1">
+            </div>
+            <div class="campo">
+                <label for="hp-atual">HP Atual:</label>
+                <input type="number" id="hp-atual" name="hp-atual" value="1">
+            </div>
+            <div class="campo">
+                <label for="hp-temp">HP Temporário:</label>
+                <input type="number" id="hp-temp" name="hp-temp" value="0">
+            </div>
         </section>
     </div>
 

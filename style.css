@@ -84,6 +84,10 @@ section {
     color: #777;
 }
 
+#defesa .campo label {
+    width: auto;
+}
+
 #pericias {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -117,21 +121,3 @@ section {
 
 #habilidades, #magias {
     flex: 1;
-    padding: 15px;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-}
-
-#habilidades h3, #magias h3 {
-    margin-top: 0;
-    color: #555;
-}
-
-#info-conjurador {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #fff;
-}
