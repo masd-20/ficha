@@ -1,264 +1,270 @@
 body {
-    font-family: 'MedievalSharp', cursive; /* Uma fonte medieval com um toque irado */
-    background-image: url('https://pngtree.com/freebackground/ancient-parchment-scroll-texture_13381473.html'); /* Uma textura de pergaminho envelhecido */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: #d4a373; /* Cor de pergaminho claro para o texto */
-    margin: 0;
-    padding: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-.grimorio-container {
-    background-color: rgba(0, 0, 0, 0.8); /* Fundo preto semi-transparente */
-    padding: 50px;
-    border-radius: 15px;
-    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.9);
-    width: 95%;
-    max-width: 1200px;
-    border: 3px solid #b8860b; /* Borda dourada escura */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Layout responsivo */
+    grid-gap: 20px;
 }
 
 header {
+    grid-column: 1 / -1; /* Cabeçalho ocupa toda a largura */
     text-align: center;
-    margin-bottom: 40px;
-    color: #ffc107; /* Amarelo dourado para o título */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
 }
 
-h1, h2, h3 {
-    color: #ffc107;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+.header-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Impede que o padding aumente a largura */
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
 }
 
 section {
-    margin-bottom: 30px;
-    padding: 30px;
-    border: 2px dashed #8b4513; /* Borda marrom escura tracejada */
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.6); /* Fundo preto mais transparente */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
 }
 
-.campo, .atributo, .pericia, #defesa .campo-inline, #pontos-vida .campo-inline {
+section h2, section h3, section h4 {
+    font-size: 1.2em;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.abilities {
+    grid-column: 1 / span 1;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ability {
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.ability .score, .ability .modifier {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.ability input[type="number"], .ability input[type="text"] {
+    width: 60px;
+    margin: 0 auto 5px;
+    text-align: center;
+}
+
+.ability .saving-throw, .ability .skills {
+    text-align: left;
+}
+
+.combat-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 10px;
+}
+
+.combat-stats > div {
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.hit-points {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.hit-points input[type="number"] {
+    width: 80px;
+}
+
+.death-saves {
+    text-align: center;
+}
+
+.death-saves .successes, .death-saves .failures {
+    margin-bottom: 5px;
+}
+
+.other-info {
+    display: flex;
+    gap: 20px;
+}
+
+.other-info > div {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.personality > div {
     margin-bottom: 15px;
 }
 
-.campo label, .atributo label, .pericia label, #defesa .campo-inline label, #pontos-vida .campo-inline label {
-    width: 200px;
-    margin-right: 20px;
-    text-align: right;
-    font-weight: bold;
-    color: #f0e68c; /* Cor de cáqui clara para as labels */
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+.personality textarea, .equipment textarea, .features-traits textarea, .proficiencies-languages textarea, .attacks-spellcasting textarea, .spell-levels textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-.campo input[type="text"],
-.campo input[type="number"],
-.campo select {
-    padding: 12px;
-    border: 1px solid #8b4513;
-    border-radius: 6px;
-    flex-grow: 1;
-    background-color: #333; /* Fundo cinza escuro para os inputs */
-    color: #d4a373;
+.attacks-spellcasting h3 {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 5px;
 }
 
-#atributos {
+.attacks-spellcasting .spellcasting-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.attacks-spellcasting .spellcasting-info .form-group {
+    margin-bottom: 5px;
+}
+
+.attacks-spellcasting h4 {
+    margin-top: 15px;
+}
+
+.spell-levels {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.atributo input[type="number"] {
-    width: 70px;
-    margin-right: 10px;
-    text-align: center;
-}
-
-.atributo .modificador {
-    font-size: 1.1em;
-    color: #daa520; /* Cor dourada para o modificador */
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-#defesa .campo-inline label {
-    width: auto;
-    margin-left: 15px;
-}
-
-#defesa .campo-inline input[type="number"] {
-    width: 60px;
-    text-align: center;
-}
-
-#defesa #ca-total {
-    font-weight: bold;
-    color: #ff8c00; /* Cor laranja escura para o CA total */
-    margin-left: 15px;
-    font-size: 1.2em;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-#pontos-vida .campo-inline label {
-    width: auto;
-}
-
-#pontos-vida .campo-inline input[type="number"] {
-    width: 70px;
-    margin: 0 10px;
-    text-align: center;
-}
-
-#pontos-vida .campo-inline button {
-    padding: 8px 15px;
-    border: 1px solid #8b4513;
-    border-radius: 6px;
-    background-color: #555;
-    color: #f0e68c;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#pontos-vida .campo-inline button:hover {
-    background-color: #777;
-}
-
-#pericias {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px 30px;
-}
-
-.pericia input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-.valor-pericia {
-    width: 40px;
-    text-align: right;
-    font-weight: bold;
-    color: #4682b4; /* Cor azul aço para o valor da perícia */
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-#habilidades-e-magias {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* Layout em três colunas */
-    gap: 20px;
-}
-
-#habilidades, #consumiveis, #magias {
-    padding: 25px;
-    border: 2px solid #8b4513;
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-#habilidades h3, #consumiveis h3, #magias h3, #magias-por-circulo h3 {
-    color: #daa520;
-    margin-top: 0;
-    border-bottom: 2px solid #8b4513;
-    padding-bottom: 8px;
+    grid-gap: 10px;
     margin-bottom: 15px;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
-#info-conjurador {
-    margin-bottom: 20px;
-    padding: 20px;
-    border: 2px solid #8b4513;
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.7);
+.spell-level {
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #fff;
 }
 
-#info-conjurador p {
-    margin-bottom: 10px;
+.spell-level .slots {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
 }
 
-#info-conjurador span {
-    color: #4682b4;
-    font-weight: bold;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-#info-conjurador input[type="number"] {
+.spell-level .slots input[type="number"] {
     width: 50px;
-    text-align: center;
-    background-color: #333;
-    color: #d4a373;
-    border: 1px solid #8b4513;
-    border-radius: 4px;
-    padding: 8px;
 }
 
-#magias-por-circulo {
-    margin-top: 20px;
-}
-
-.consumivel-item {
+.spell-level .spells-list {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.spell-level .spells-list input[type="text"] {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.spell-level .spells-list label {
+    font-size: 0.9em;
+}
+
+.attacks-spellcasting table {
+    width: 100%;
+    border-collapse: collapse;
     margin-bottom: 10px;
 }
 
-.consumivel-item label {
-    font-weight: bold;
-    color: #f0e68c;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-.consumivel-item input[type="number"] {
-    width: 60px;
-    text-align: center;
-    background-color: #333;
-    color: #d4a373;
-    border: 1px solid #8b4513;
-    border-radius: 4px;
+.attacks-spellcasting th, .attacks-spellcasting td {
+    border: 1px solid #ddd;
     padding: 8px;
+    text-align: left;
 }
 
-.recurso-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+.attacks-spellcasting th {
+    background-color: #f0f0f0;
 }
 
-.recurso-item label {
-    font-weight: bold;
-    color: #f0e68c;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+.attacks-spellcasting td input[type="text"], .attacks-spellcasting td select {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-.recurso-item .recurso-controls {
-    display: flex;
-    align-items: center;
-}
-
-.recurso-item button {
-    padding: 8px 12px;
-    margin: 0 8px;
-    border: 1px solid #8b4513;
-    border-radius: 6px;
-    background-color: #555;
-    color: #f0e68c;
+.attacks-spellcasting button {
+    padding: 8px 15px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.recurso-item button:hover {
-    background-color: #777;
-}
-
-.recurso-item span {
     font-size: 1em;
-    color: #daa520;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+}
+
+.attacks-spellcasting button:hover {
+    background-color: #4cae4c;
 }

@@ -4,240 +4,403 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha de Personagem D&D</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="grimorio-container">
+    <div class="container">
         <header>
             <h1>Ficha de Personagem</h1>
+            <div class="header-info">
+                <div class="form-group">
+                    <label for="nome-personagem">Nome do Personagem:</label>
+                    <input type="text" id="nome-personagem">
+                </div>
+                <div class="form-group">
+                    <label for="classe-nivel">Classe e Nível:</label>
+                    <input type="text" id="classe-nivel">
+                </div>
+                <div class="form-group">
+                    <label for="antecedente">Antecedente:</label>
+                    <input type="text" id="antecedente">
+                </div>
+                <div class="form-group">
+                    <label for="nome-jogador">Nome do Jogador:</label>
+                    <input type="text" id="nome-jogador">
+                </div>
+                <div class="form-group">
+                    <label for="raça">Raça:</label>
+                    <input type="text" id="raça">
+                </div>
+                <div class="form-group">
+                    <label for="alinhamento">Alinhamento:</label>
+                    <input type="text" id="alinhamento">
+                </div>
+                <div class="form-group">
+                    <label for="pontos-experiencia">Pontos de Experiência:</label>
+                    <input type="number" id="pontos-experiencia">
+                </div>
+            </div>
         </header>
 
-        <section id="informacoes-basicas">
-            <h2>Informações Básicas</h2>
-            <div class="campo">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome">
-            </div>
-            <div class="campo">
-                <label for="classe">Classe:</label>
-                <select id="classe" name="classe" onchange="atualizarFicha()">
-                    <option value="">Selecione</option>
-                    <option value="barbaro">Bárbaro</option>
-                    <option value="bardo">Bardo</option>
-                    <option value="clerigo">Clérigo</option>
-                    <option value="druida">Druida</option>
-                    <option value="guerreiro">Guerreiro</option>
-                    <option value="monge">Monge</option>
-                    <option value="paladino">Paladino</option>
-                    <option value="patrulheiro">Patrulheiro</option>
-                    <option value="ladino">Ladino</option>
-                    <option value="feiticeiro">Feiticeiro</option>
-                    <option value="mago">Mago</option>
-                </select>
-            </div>
-            <div class="campo">
-                <label for="nivel">Nível:</label>
-                <input type="number" id="nivel" name="nivel" min="1" value="1" onchange="atualizarFicha()">
-            </div>
-            <div class="campo">
-                <label for="raca">Raça:</label>
-                <input type="text" id="raca" name="raca">
-            </div>
-            <div class="campo">
-                <label for="tendencia">Tendência:</label>
-                <input type="text" id="tendencia" name="tendencia">
-            </div>
-            <div class="campo">
-                <label for="antecedente">Antecedente:</label>
-                <input type="text" id="antecedente" name="antecedente">
-            </div>
-        </section>
-
-        <section id="atributos">
-            <h2>Atributos</h2>
-            <div class="atributo">
-                <label for="forca">Força:</label>
-                <input type="number" id="forca" name="forca" min="1" value="10" onchange="atualizarModificadores()">
-                <span class="modificador" data-atributo="forca"></span>
-            </div>
-            <div class="atributo">
-                <label for="destreza">Destreza:</label>
-                <input type="number" id="destreza" name="destreza" min="1" value="10" onchange="atualizarModificadores()">
-                <span class="modificador" data-atributo="destreza"></span>
-            </div>
-            <div class="atributo">
-                <label for="constituicao">Constituição:</label>
-                <input type="number" id="constituicao" name="constituicao" min="1" value="10" onchange="atualizarModificadores()">
-                <span class="modificador" data-atributo="constituicao"></span>
-            </div>
-            <div class="atributo">
-                <label for="inteligencia">Inteligência:</label>
-                <input type="number" id="inteligencia" name="inteligencia" min="1" value="10" onchange="atualizarModificadores()">
-                <span class="modificador" data-atributo="inteligencia"></span>
-            </div>
-            <div class="atributo">
-                <label for="sabedoria">Sabedoria:</label>
-                <input type="number" id="sabedoria" name="sabedoria" min="1" value="10" onchange="atualizarModificadores()">
-                <span class="modificador" data-atributo="sabedoria"></span>
-            </div>
-            <div class="atributo">
-                <label for="carisma">Carisma:</label>
-                <input type="number" id="carisma" name="carisma" min="1" value="10" onchange="atualizarModificadores()">
-                <span class="modificador" data-atributo="carisma"></span>
-            </div>
-        </section>
-
-        <section id="defesa">
-            <h2>Defesa</h2>
-            <div class="campo-inline">
-                <label for="ca-base">CA Base:</label>
-                <input type="number" id="ca-base" name="ca-base" value="10" onchange="atualizarCA()">
-                <label for="bonus-ca"> + Bônus:</label>
-                <input type="number" id="bonus-ca" name="bonus-ca" value="0" size="2" onchange="atualizarCA()">
-                <label for="ca-total"> = CA Total:</label>
-                <span id="ca-total">10</span>
-            </div>
-        </section>
-
-        <section id="pontos-vida">
-            <h2>Pontos de Vida</h2>
-            <div class="campo-inline">
-                <label for="hp-atual">HP Atual:</label>
-                <button type="button" onclick="alterarHP(-1)">-</button>
-                <input type="number" id="hp-atual" name="hp-atual" value="1" onchange="validarHP()">
-                <button type="button" onclick="alterarHP(1)">+</button>
-            </div>
-            <div class="campo">
-                <label for="hp-max">HP Máximo:</label>
-                <input type="number" id="hp-max" name="hp-max" value="1" onchange="validarHP()">
-            </div>
-            <div class="campo">
-                <label for="hp-temp">HP Temporário:</label>
-                <input type="number" id="hp-temp" name="hp-temp" value="0">
-            </div>
-        </section>
-
-        <section id="pericias">
-            <h2>Perícias</h2>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-acrobacia" data-atributo="destreza" onchange="atualizarPericias()">
-                <label for="pericia-acrobacia">Acrobacia (DES)</label>
-                <span class="valor-pericia" data-pericia="acrobacia">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-adestramento-animais" data-atributo="sabedoria" onchange="atualizarPericias()">
-                <label for="pericia-adestramento-animais">Adestramento de Animais (SAB)</label>
-                <span class="valor-pericia" data-pericia="adestramento-animais">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-arcanismo" data-atributo="inteligencia" onchange="atualizarPericias()">
-                <label for="pericia-arcanismo">Arcanismo (INT)</label>
-                <span class="valor-pericia" data-pericia="arcanismo">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-atletismo" data-atributo="forca" onchange="atualizarPericias()">
-                <label for="pericia-atletismo">Atletismo (FOR)</label>
-                <span class="valor-pericia" data-pericia="atletismo">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-atuacao" data-atributo="carisma" onchange="atualizarPericias()">
-                <label for="pericia-atuacao">Atuação (CAR)</label>
-                <span class="valor-pericia" data-pericia="atuacao">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-enganacao" data-atributo="carisma" onchange="atualizarPericias()">
-                <label for="pericia-enganacao">Enganação (CAR)</label>
-                <span class="valor-pericia" data-pericia="enganacao">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-furtividade" data-atributo="destreza" onchange="atualizarPericias()">
-                <label for="pericia-furtividade">Furtividade (DES)</label>
-                <span class="valor-pericia" data-pericia="furtividade">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-historia" data-atributo="inteligencia" onchange="atualizarPericias()">
-                <label for="pericia-historia">História (INT)</label>
-                <span class="valor-pericia" data-pericia="historia">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-intimidacao" data-atributo="carisma" onchange="atualizarPericias()">
-                <label for="pericia-intimidacao">Intimidação (CAR)</label>
-                <span class="valor-pericia" data-pericia="intimidacao">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-intuicao" data-atributo="sabedoria" onchange="atualizarPericias()">
-                <label for="pericia-intuicao">Intuição (SAB)</label>
-                <span class="valor-pericia" data-pericia="intuicao">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-investigacao" data-atributo="inteligencia" onchange="atualizarPericias()">
-                <label for="pericia-investigacao">Investigação (INT)</label>
-                <span class="valor-pericia" data-pericia="investigacao">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-medicina" data-atributo="sabedoria" onchange="atualizarPericias()">
-                <label for="pericia-medicina">Medicina (SAB)</label>
-                <span class="valor-pericia" data-pericia="medicina">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-natureza" data-atributo="inteligencia" onchange="atualizarPericias()">
-                <label for="pericia-natureza">Natureza (INT)</label>
-                <span class="valor-pericia" data-pericia="natureza">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-percepcao" data-atributo="sabedoria" onchange="atualizarPericias()">
-                <label for="pericia-percepcao">Percepção (SAB)</label>
-                <span class="valor-pericia" data-pericia="percepcao">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-persuasao" data-atributo="carisma" onchange="atualizarPericias()">
-                <label for="pericia-persuasao">Persuasão (CAR)</label>
-                <span class="valor-pericia" data-pericia="persuasao">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-prestidigitacao" data-atributo="destreza" onchange="atualizarPericias()">
-                <label for="pericia-prestidigitacao">Prestidigitação (DES)</label>
-                <span class="valor-pericia" data-pericia="prestidigitacao">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-religiao" data-atributo="inteligencia" onchange="atualizarPericias()">
-                <label for="pericia-religiao">Religião (INT)</label>
-                <span class="valor-pericia" data-pericia="religiao">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-sobrevivencia" data-atributo="sabedoria" onchange="atualizarPericias()">
-                <label for="pericia-sobrevivencia">Sobrevivência (SAB)</label>
-                <span class="valor-pericia" data-pericia="sobrevivencia">0</span>
-            </div>
-            <div class="pericia">
-                <input type="checkbox" id="pericia-sigilo" data-atributo="destreza" onchange="atualizarPericias()">
-                <label for="pericia-sigilo">Sigilo (DES)</label>
-                <span class="valor-pericia" data-pericia="sigilo">0</span>
-            </div>
-        </section>
-
-        <section id="habilidades-e-magias">
-            <h2>Habilidades de Classe e Magias</h2>
-            <div id="habilidades">
-                <h3>Habilidades de Classe</h3>
-                </div>
-            <div id="consumiveis">
-                <h3>Consumíveis</h3>
-                </div>
-            <div id="magias" style="display: none;">
-                <h3>Magias</h3>
-                <div id="info-conjurador">
-                    <p>Atributo de Conjuração: <span id="atributo-conjuração"></span></p>
-                    <p>CD de Magia: <span id="cd-magia-base"></span> - <input type="number" id="bonus-cd" name="bonus-cd" value="0" size="2" onchange="atualizarCDMagia()"> Bônus = <span id="cd-magia-total"></span></p>
-                    <p>Modificador de Ataque Mágico: <span id="mod-ataque-magia-base"></span> - <input type="number" id="bonus-ataque-magia" name="bonus-ataque-magia" value="0" size="2" onchange="atualizarModAtaqueMagia()"> Bônus = <span id="mod-ataque-magia-total"></span></p>
-                </div>
-                <div id="magias-por-circulo">
-                    <h3>Magias por Círculo</h3>
+        <main>
+            <section class="abilities">
+                <div class="ability">
+                    <h2>Força</h2>
+                    <div class="score">
+                        <input type="number" id="forca-valor">
+                        <label for="forca-valor">Valor</label>
                     </div>
-            </div>
-        </section>
-    </div>
+                    <div class="modifier">
+                        <input type="text" id="forca-mod" readonly>
+                        <label for="forca-mod">Mod.</label>
+                    </div>
+                    <div class="saving-throw">
+                        <input type="checkbox" id="salvaguarda-forca">
+                        <label for="salvaguarda-forca">Salvaguarda</label>
+                    </div>
+                    <div class="skills">
+                        <div class="skill">
+                            <input type="checkbox" id="atletismo">
+                            <label for="atletismo">Atletismo</label>
+                        </div>
+                    </div>
+                </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+                <div class="ability">
+                    <h2>Destreza</h2>
+                    <div class="score">
+                        <input type="number" id="destreza-valor">
+                        <label for="destreza-valor">Valor</label>
+                    </div>
+                    <div class="modifier">
+                        <input type="text" id="destreza-mod" readonly>
+                        <label for="destreza-mod">Mod.</label>
+                    </div>
+                    <div class="saving-throw">
+                        <input type="checkbox" id="salvaguarda-destreza">
+                        <label for="salvaguarda-destreza">Salvaguarda</label>
+                    </div>
+                    <div class="skills">
+                        <div class="skill">
+                            <input type="checkbox" id="acrobacia">
+                            <label for="acrobacia">Acrobacia</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="furtividade">
+                            <label for="furtividade">Furtividade</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="prestidigitacao">
+                            <label for="prestidigitacao">Prestidigitação</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <h2>Constituição</h2>
+                    <div class="score">
+                        <input type="number" id="constituicao-valor">
+                        <label for="constituicao-valor">Valor</label>
+                    </div>
+                    <div class="modifier">
+                        <input type="text" id="constituicao-mod" readonly>
+                        <label for="constituicao-mod">Mod.</label>
+                    </div>
+                    <div class="saving-throw">
+                        <input type="checkbox" id="salvaguarda-constituicao">
+                        <label for="salvaguarda-constituicao">Salvaguarda</label>
+                    </div>
+                    <div class="skills">
+                        </div>
+                </div>
+
+                <div class="ability">
+                    <h2>Inteligência</h2>
+                    <div class="score">
+                        <input type="number" id="inteligencia-valor">
+                        <label for="inteligencia-valor">Valor</label>
+                    </div>
+                    <div class="modifier">
+                        <input type="text" id="inteligencia-mod" readonly>
+                        <label for="inteligencia-mod">Mod.</label>
+                    </div>
+                    <div class="saving-throw">
+                        <input type="checkbox" id="salvaguarda-inteligencia">
+                        <label for="salvaguarda-inteligencia">Salvaguarda</label>
+                    </div>
+                    <div class="skills">
+                        <div class="skill">
+                            <input type="checkbox" id="arcanismo">
+                            <label for="arcanismo">Arcanismo</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="historia">
+                            <label for="historia">História</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="investigacao">
+                            <label for="investigacao">Investigação</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="natureza">
+                            <label for="natureza">Natureza</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="religiao">
+                            <label for="religiao">Religião</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <h2>Sabedoria</h2>
+                    <div class="score">
+                        <input type="number" id="sabedoria-valor">
+                        <label for="sabedoria-valor">Valor</label>
+                    </div>
+                    <div class="modifier">
+                        <input type="text" id="sabedoria-mod" readonly>
+                        <label for="sabedoria-mod">Mod.</label>
+                    </div>
+                    <div class="saving-throw">
+                        <input type="checkbox" id="salvaguarda-sabedoria">
+                        <label for="salvaguarda-sabedoria">Salvaguarda</label>
+                    </div>
+                    <div class="skills">
+                        <div class="skill">
+                            <input type="checkbox" id="adestramento-animais">
+                            <label for="adestramento-animais">Adestramento de Animais</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="intuicao">
+                            <label for="intuicao">Intuição</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="medicina">
+                            <label for="medicina">Medicina</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="percepcao">
+                            <label for="percepcao">Percepção</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="sobrevivencia">
+                            <label for="sobrevivencia">Sobrevivência</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ability">
+                    <h2>Carisma</h2>
+                    <div class="score">
+                        <input type="number" id="carisma-valor">
+                        <label for="carisma-valor">Valor</label>
+                    </div>
+                    <div class="modifier">
+                        <input type="text" id="carisma-mod" readonly>
+                        <label for="carisma-mod">Mod.</label>
+                    </div>
+                    <div class="saving-throw">
+                        <input type="checkbox" id="salvaguarda-carisma">
+                        <label for="salvaguarda-carisma">Salvaguarda</label>
+                    </div>
+                    <div class="skills">
+                        <div class="skill">
+                            <input type="checkbox" id="atuacao">
+                            <label for="atuacao">Atuação</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="enganacao">
+                            <label for="enganacao">Enganação</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="intimidacao">
+                            <label for="intimidacao">Intimidação</label>
+                        </div>
+                        <div class="skill">
+                            <input type="checkbox" id="persuasao">
+                            <label for="persuasao">Persuasão</label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="combat-stats">
+                <div class="armor-class">
+                    <label for="classe-armadura">Classe de Armadura:</label>
+                    <input type="number" id="classe-armadura">
+                </div>
+                <div class="initiative">
+                    <label for="iniciativa">Iniciativa:</label>
+                    <input type="number" id="iniciativa">
+                </div>
+                <div class="speed">
+                    <label for="deslocamento">Deslocamento:</label>
+                    <input type="text" id="deslocamento">
+                </div>
+                <div class="hit-points">
+                    <label for="pontos-vida-maximos">Pontos de Vida Máximos:</label>
+                    <input type="number" id="pontos-vida-maximos">
+                    <label for="pontos-vida-atuais">Pontos de Vida Atuais:</label>
+                    <input type="number" id="pontos-vida-atuais">
+                    <label for="pontos-vida-temporarios">Pontos de Vida Temporários:</label>
+                    <input type="number" id="pontos-vida-temporarios">
+                </div>
+                <div class="hit-dice">
+                    <label for="dado-vida">Dado de Vida:</label>
+                    <input type="text" id="dado-vida">
+                </div>
+                <div class="death-saves">
+                    <h3>Salvaguardas contra a Morte</h3>
+                    <div class="successes">
+                        <label>Sucessos:</label>
+                        <input type="checkbox">
+                        <input type="checkbox">
+                        <input type="checkbox">
+                    </div>
+                    <div class="failures">
+                        <label>Falhas:</label>
+                        <input type="checkbox">
+                        <input type="checkbox">
+                        <input type="checkbox">
+                    </div>
+                </div>
+            </section>
+
+            <section class="other-info">
+                <div class="proficiency-bonus">
+                    <label for="bonus-proficiencia">Bônus de Proficiência:</label>
+                    <input type="number" id="bonus-proficiencia">
+                </div>
+                <div class="inspiration">
+                    <label for="inspiracao">Inspiração:</label>
+                    <input type="checkbox" id="inspiracao">
+                </div>
+            </section>
+
+            <section class="personality">
+                <div class="trait">
+                    <h3>Traços de Personalidade</h3>
+                    <textarea id="tracos-personalidade"></textarea>
+                </div>
+                <div class="ideal">
+                    <h3>Ideais</h3>
+                    <textarea id="ideais"></textarea>
+                </div>
+                <div class="bond">
+                    <h3>Vínculos</h3>
+                    <textarea id="vinculos"></textarea>
+                </div>
+                <div class="flaw">
+                    <h3>Fraquezas</h3>
+                    <textarea id="fraquezas"></textarea>
+                </div>
+            </section>
+
+            <section class="attacks-spellcasting">
+                <h3>Ataques e Conjuração</h3>
+                <div class="spellcasting-info">
+                    <div class="form-group">
+                        <label for="spellcasting-class">Classe de Conjuração:</label>
+                        <input type="text" id="spellcasting-class">
+                    </div>
+                    <div class="form-group">
+                        <label for="spellcasting-ability">Habilidade de Conjuração:</label>
+                        <select id="spellcasting-ability">
+                            <option value="inteligencia">Inteligência</option>
+                            <option value="sabedoria">Sabedoria</option>
+                            <option value="carisma">Carisma</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="spell-save-dc">CD da Salvaguarda de Magia:</label>
+                        <input type="number" id="spell-save-dc" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="spell-attack-bonus">Bônus de Ataque de Magia:</label>
+                        <input type="number" id="spell-attack-bonus" readonly>
+                    </div>
+                </div>
+
+                <h4>Truques (Nível 0)</h4>
+                <textarea placeholder="Truques"></textarea>
+
+                <div class="spell-levels">
+                    <div class="spell-level">
+                        <h4>Nível 1</h4>
+                        <div class="slots">
+                            <label for="slots-total-1">Total de Espaços:</label>
+                            <input type="number" id="slots-total-1" min="0" value="0">
+                            <span id="slots-expended-1">0 Gasto(s)</span>
+                        </div>
+                        <div class="spells-list">
+                            <input type="text" placeholder="Nome da Magia">
+                            <input type="checkbox" class="slot-checkbox-1"> Gasto
+                            <input type="text" placeholder="Nome da Magia">
+                            <input type="checkbox" class="slot-checkbox-1"> Gasto
+                        </div>
+                    </div>
+
+                    <div class="spell-level">
+                        <h4>Nível 2</h4>
+                        <div class="slots">
+                            <label for="slots-total-2">Total de Espaços:</label>
+                            <input type="number" id="slots-total-2" min="0" value="0">
+                            <span id="slots-expended-2">0 Gasto(s)</span>
+                        </div>
+                        <div class="spells-list">
+                            <input type="text" placeholder="Nome da Magia">
+                            <input type="checkbox" class="slot-checkbox-2"> Gasto
+                            <input type="text" placeholder="Nome da Magia">
+                            <input type="checkbox" class="slot-checkbox-2"> Gasto
+                        </div>
+                    </div>
+
+                    <div class="spell-level">
+                        <h4>Nível 3</h4>
+                        <div class="slots">
+                            <label for="slots-total-3">Total de Espaços:</label>
+                            <input type="number" id="slots-total-3" min="0" value="0">
+                            <span id="slots-expended-3">0 Gasto(s)</span>
+                        </div>
+                        <div class="spells-list">
+                            <input type="text" placeholder="Nome da Magia">
+                            <input type="checkbox" class="slot-checkbox-3"> Gasto
+                            <input type="text" placeholder="Nome da Magia">
+                            <input type="checkbox" class="slot-checkbox-3"> Gasto
+                        </div>
+                    </div>
+
+                    <div class="spell-level">
+                        <h4>Nível 4</h4>
+                        <div class="slots">
+                            <label for="slots-total-4">Total de Espaços:</label>
+                            <input type="number" id="slots-total-4" min="0" value="0">
+                            <span id="slots-expended-4">0 Gasto(s)</span>
+                        </div>
+                        <div class="spells-list">
+                            <input type="text" placeholder="Nome da Magia">
+                            <input type="checkbox" class="slot-checkbox-4"> Gasto
+                            <input type="text" placeholder="Nome da Magia">
+                            <input type="checkbox" class="slot-checkbox-4"> Gasto
+                        </div>
+                    </div>
+
+                    <div class="spell-level">
+                        <h4>Nível 5</h4>
+                        <div class="slots">
+                            <label for="slots-total-5">Total de Espaços:</label>
+                            <input type="number" id="slots-total-5" min="0" value="0">
+                            <span id="slots-expended-5">0 Gasto(s)</span>
+                        </div>
+                        <div class="spells-list">
+                            <input type="text" placeholder="Nome da Magia">
+                            <input type="checkbox" class="slot-checkbox-5"> Gasto
+                            <input type="text" placeholder="Nome da Magia">
+                            <input type="checkbox" class="slot-checkbox-5"> Gasto
+                        </div>
+                    </div>
+
+                    <div class="spell-level">
+                        <h4>Nível 6</h4>
+                        <div class="slots
