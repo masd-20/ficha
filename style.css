@@ -1,123 +1,59 @@
 body {
-    font-family: sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Book Antiqua', serif; /* Uma fonte com aparência de livro antigo */
+    background-color: #332218; /* Cor de couro escuro */
     margin: 0;
     padding: 20px;
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-.container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 960px;
+.grimorio-container {
+    background-color: #f7f2e7; /* Cor de papel antigo */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 900px;
+    border: 2px solid #a0805a; /* Borda cor de pergaminho */
 }
 
 header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    color: #8b4513; /* Cor de sela */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 h1, h2 {
-    color: #333;
+    color: #8b4513;
 }
 
 section {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    margin-bottom: 25px;
+    padding: 20px;
+    border: 1px dashed #a0805a;
+    border-radius: 6px;
+    background-color: #fffaf0; /* Cor de linho */
 }
 
-.campo {
-    margin-bottom: 10px;
+.campo, .atributo, .pericia, #defesa .campo-inline, #pontos-vida .campo-inline {
     display: flex;
     align-items: center;
+    margin-bottom: 12px;
 }
 
-.campo label {
-    width: 150px;
-    margin-right: 10px;
+.campo label, .atributo label, .pericia label, #defesa .campo-inline label, #pontos-vida .campo-inline label {
+    width: 180px;
+    margin-right: 15px;
     text-align: right;
     font-weight: bold;
+    color: #5e260d; /* Cor de mogno */
 }
 
 .campo input[type="text"],
 .campo input[type="number"],
 .campo select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    flex-grow: 1;
-}
-
-#atributos {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
-}
-
-.atributo {
-    display: flex;
-    align-items: center;
-}
-
-.atributo label {
-    width: auto;
-    margin-right: 5px;
-    font-weight: bold;
-}
-
-.atributo input[type="number"] {
-    width: 50px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 5px;
-}
-
-.atributo .modificador {
-    font-size: 0.9em;
-    color: #777;
-}
-
-#defesa .campo label {
-    width: auto;
-}
-
-#pericias {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px 20px;
-}
-
-.pericia {
-    display: flex;
-    align-items: center;
-}
-
-.pericia input[type="checkbox"] {
-    margin-right: 8px;
-}
-
-.pericia label {
-    flex-grow: 1;
-}
-
-.valor-pericia {
-    width: 30px;
-    text-align: right;
-    font-weight: bold;
-    color: #337ab7;
-}
-
-#habilidades-e-magias {
-    display: flex;
-    gap: 20px;
-}
-
-#habilidades, #magias {
-    flex: 1;
+    padding: 10px;
+    border: 1px solid #a08

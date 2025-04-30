@@ -63,16 +63,66 @@ function atualizarPericias() {
 function atualizarCDMagia() {
     const classeSelecionada = document.getElementById('classe').value;
     const infoClasse = CLASSES_INFO[classeSelecionada];
-    const cdMagiaSpan = document.getElementById('cd-magia');
+    const cdMagiaBaseSpan = document.getElementById('cd-magia-base');
     const bonusCD = parseInt(document.getElementById('bonus-cd').value) || 0;
 
     if (infoClasse && infoClasse.conjurador && infoClasse.atributoConjuração) {
         const atributoValor = parseInt(document.getElementById(infoClasse.atributoConjuração).value);
         const modificadorAtributo = calcularModificador(atributoValor);
         const bonusProf = getBonusProficiencia();
-        cdMagiaSpan.textContent = 8 + bonusProf + modificadorAtributo + bonusCD;
+        cdMagiaBaseSpan.textContent = 8 + bonusProf + modificadorAtributo;
     } else {
-        cdMagiaSpan.textContent = '';
+        cdMagiaBaseSpan.textContent = '';
+    }
+}
+
+function atualizarModAtaqueMagia() {
+    const classeSelecionada = document.getElementById('classe').value;
+    const infoClasse = CLASSES_INFO[classeSelecionada];
+    const modAtaqueMagiaBaseSpan = document.getElementById('mod-ataque-magia-base');
+    const bonusAtaqueMagia = parseInt(document.getElementById('bonus-ataque-magia').value) || 0;
+
+    if (infoClasse && infoClasse.conjurador && infoClasse.atributoConjuração) {
+        const atributoValor = parseInt(document.getElementById(infoClasse.atributoConjuração).value);
+        const modificadorAtributo = calcularModificador(atributoValor);
+        const bonusProf = getBonusProficiencia();
+        modAtaqueMagiaBaseSpan.textContent = `${modificadorAtributo + bonusProf >= 0 ? '+' : ''}${modificadorAtributo + bonusProf}`;
+    } else {
+        modAtaqueMagiaBaseSpan.textContent = '';
+    }
+}
+
+function atualizarCA() {
+    // Por enquanto, apenas atualiza o valor exibido. Lógica mais complexa de cálculo de CA pode ser adicionada aqui.
+    const caBase = parseInt(document.getElementById('ca').value) || 10;
+    const bonusCA = parseInt(document.getElementById('bonus-ca').value) || 0;
+    // O valor total da CA pode ser exibido em outro lugar se necessário.
+}
+
+function validarHP() {
+    const hpAtualInput = document.getElementById('hp-atual');
+    const hpMax = parseInt(document.getElementById('hp-max').value) || 1;
+    let hpAtual = parseInt(hpAtualInput.value) || 0;
+
+    if (hpAtual > hpMax) {
+        hpAtualInput.value = hpMax;
+    } else if (hpAtual < 0) {
+        hpAtualInput.value = 0;
+    }
+}
+
+function alterarHP(delta) {
+    const hpAtualInput = document.getElementById('hp-atual');
+    const hpMax = parseInt(document.getElementById('hp-max').value) || 1;
+    let hpAtual = parseInt(hpAtualInput.value) || 0;
+    hpAtual += delta;
+
+    if (hpAtual > hpMax) {
+        hpAtualInput.value = hpMax;
+    } else if (hpAtual < 0) {
+        hpAtualInput.value = 0;
+    } else {
+        hpAtualInput.value = hpAtual;
     }
 }
 
@@ -83,7 +133,6 @@ function atualizarInfoClasse() {
     const magiasDiv = document.getElementById('magias');
     const infoConjuradorDiv = document.getElementById('info-conjurador');
     const atributoConjuraçãoSpan = document.getElementById('atributo-conjuração');
-    const modAtaqueMagiaSpan = document.getElementById('mod-ataque-magia');
 
     habilidadesDiv.innerHTML = '';
     magiasDiv.style.display = 'none';
@@ -112,12 +161,8 @@ function atualizarInfoClasse() {
         if (infoClasse.conjurador) {
             magiasDiv.style.display = 'block';
             atributoConjuraçãoSpan.textContent = infoClasse.atributoConjuração.charAt(0).toUpperCase() + infoClasse.atributoConjuração.slice(1);
-            const atributoValor = parseInt(document.getElementById(infoClasse.atributoConjuração).value);
-            const modificadorAtributo = calcularModificador(atributoValor);
-            const bonusProf = getBonusProficiencia();
-            const bonusCD = parseInt(document.getElementById('bonus-cd').value) || 0;
-            document.getElementById('cd-magia').textContent = 8 + bonusProf + modificadorAtributo + bonusCD;
-            modAtaqueMagiaSpan.textContent = `${modificadorAtributo + bonusProf >= 0 ? '+' : ''}${modificadorAtributo + bonusProf}`;
+            atualizarCDMagia();
+            atualizarModAtaqueMagia();
         }
     }
 }
@@ -127,6 +172,7 @@ function atualizarFicha() {
     atualizarModificadores();
     atualizarInfoClasse();
     atualizarCDMagia();
+    atualizarModAtaqueMagia();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
