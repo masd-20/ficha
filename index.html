@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ficha Online D&D 5e</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ficha de Personagem D&D 5e</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Ficha Online - D&D 5e</h1>
+      <h1>Ficha Online - Dungeons & Dragons 5e</h1>
     </header>
 
-    <section class="section">
+    <section class="input-section">
       <label for="classe">Classe:</label>
       <select id="classe">
         <option value="">Selecione uma classe</option>
-        <option value="Bardo">Bardo</option>
-        <option value="Clérigo">Clérigo</option>
-        <option value="Feiticeiro">Feiticeiro</option>
-        <option value="Mago">Mago</option>
-        <option value="Paladino">Paladino</option>
+        <option>Artífice</option>
+        <option>Bárbaro</option>
+        <option>Bardo</option>
+        <option>Bruxo</option>
+        <option>Clérigo</option>
+        <option>Druida</option>
+        <option>Feiticeiro</option>
+        <option>Guerreiro</option>
+        <option>Ladino</option>
+        <option>Mago</option>
+        <option>Monge</option>
+        <option>Paladino</option>
+        <option>Patrulheiro</option>
       </select>
 
       <label for="nivel">Nível:</label>
       <select id="nivel">
         <option value="">Selecione o nível</option>
-        <!-- Níveis 1 a 20 -->
-        <!-- Você pode copiar esta linha para adicionar até o nível 20 -->
-        <!-- Exemplo até o 5 para simplificar -->
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
+        <!-- Níveis de 1 a 20 -->
+        <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
       </select>
     </section>
 
-    <section class="section" id="dados-da-classe">
+    <section class="output-section">
       <h2>Características da Classe</h2>
       <div id="output">
-        <p>Selecione uma classe e nível válidos.</p>
+        <p>Selecione uma classe e um nível para ver os detalhes.</p>
       </div>
     </section>
 
     <footer>
-      <p>&copy; 2025 Ficha D&D Online</p>
+      <p>Desenvolvido por você &copy; 2025</p>
     </footer>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>

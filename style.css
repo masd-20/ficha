@@ -1,42 +1,71 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  padding: 20px;
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background-color: #121212;
+  color: #f0e6d2;
+  background-image: url('https://www.transparenttextures.com/patterns/dark-leather.png');
+  background-size: cover;
 }
 
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 40px 30px;
+  background-color: #1e1a16;
+  border: 2px solid #8b0000;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(139, 0, 0, 0.6);
 }
 
-header, footer {
+header h1 {
+  font-size: 2.5em;
   text-align: center;
+  color: #e63946;
   margin-bottom: 20px;
+  font-variant: small-caps;
+  letter-spacing: 2px;
 }
 
-.section {
-  margin-bottom: 20px;
+footer {
+  text-align: center;
+  color: #ccc;
+  margin-top: 40px;
+  font-size: 0.9em;
+}
+
+.input-section, .output-section {
+  margin-bottom: 30px;
 }
 
 label {
   display: block;
-  margin-top: 10px;
+  margin: 12px 0 5px;
+  font-weight: bold;
+  color: #f2c57c;
 }
 
 select {
   width: 100%;
-  padding: 8px;
-  margin-top: 5px;
+  padding: 10px;
+  background-color: #2d2d2d;
+  color: #f0e6d2;
+  border: 1px solid #f2c57c;
+  border-radius: 5px;
+  font-size: 1em;
 }
 
-ul {
+#output ul {
   list-style: none;
   padding-left: 0;
 }
 
-ul li {
-  margin: 5px 0;
+#output ul li {
+  margin: 8px 0;
+  padding: 6px 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #f2c57c;
+}
+
+#output strong {
+  color: #f2c57c;
 }
