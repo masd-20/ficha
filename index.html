@@ -1,98 +1,103 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha de Personagem D&D</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Ficha de Personagem</h1>
-        </header>
-
-        <section id="informacoes-basicas">
-            <h2>Informações Básicas</h2>
-            <div class="campo">
-                <label for="nome">Nome do Personagem:</label>
-                <input type="text" id="nome" name="nome">
-            </div>
-            <div class="campo">
-                <label for="classe">Classe:</label>
-                <select id="classe" name="classe">
-                    <option value="">Selecione a Classe</option>
-                </select>
-            </div>
-            <div class="campo">
-                <label for="nivel">Nível:</label>
-                <input type="number" id="nivel" name="nivel" min="1" value="1">
-            </div>
-            <div class="campo">
-                <label for="raca">Raça:</label>
-                <input type="text" id="raca" name="raca">
-            </div>
-            <div class="campo">
-                <label for="tendencia">Tendência:</label>
-                <input type="text" id="tendencia" name="tendencia">
-            </div>
-            <div class="campo">
-                <label for="antecedente">Antecedente:</label>
-                <input type="text" id="antecedente" name="antecedente">
-            </div>
-        </section>
-
-        <section id="atributos">
-            <h2>Atributos</h2>
-            <div class="atributo">
-                <label for="forca">Força:</label>
-                <input type="number" id="forca" name="forca" min="1" value="10">
-                <span class="modificador" id="mod-forca"></span>
-            </div>
-            <div class="atributo">
-                <label for="destreza">Destreza:</label>
-                <input type="number" id="destreza" name="destreza" min="1" value="10">
-                <span class="modificador" id="mod-destreza"></span>
-            </div>
-            <div class="atributo">
-                <label for="constituicao">Constituição:</label>
-                <input type="number" id="constituicao" name="constituicao" min="1" value="10">
-                <span class="modificador" id="mod-constituicao"></span>
-            </div>
-            <div class="atributo">
-                <label for="inteligencia">Inteligência:</label>
-                <input type="number" id="inteligencia" name="inteligencia" min="1" value="10">
-                <span class="modificador" id="mod-inteligencia"></span>
-            </div>
-            <div class="atributo">
-                <label for="sabedoria">Sabedoria:</label>
-                <input type="number" id="sabedoria" name="sabedoria" min="1" value="10">
-                <span class="modificador" id="mod-sabedoria"></span>
-            </div>
-            <div class="atributo">
-                <label for="carisma">Carisma:</label>
-                <input type="number" id="carisma" name="carisma" min="1" value="10">
-                <span class="modificador" id="mod-carisma"></span>
-            </div>
-        </section>
-
-        <section id="pericias">
-            <h2>Perícias</h2>
-            </section>
-
-        <section id="habilidades">
+<section id="habilidades">
             <h2>Habilidades de Classe e Recursos</h2>
-            </section>
+            <div id="recursos-barbaro" style="display: none;">
+                <h3>Fúria</h3>
+                <div class="campo-duplo">
+                    <label for="furia-atual">Fúria Atual:</label>
+                    <input type="number" id="furia-atual" name="furia-atual" min="0" value="0">
+                    <label for="furia-max">Fúria Máxima:</label>
+                    <input type="number" id="furia-max" name="furia-max" min="0" value="0" readonly>
+                </div>
+                <button onclick="usarRecurso('furia')">Usar Fúria</button>
+                <button onclick="restaurarRecursos('furia', 'longo')">Descanso Longo</button>
+            </div>
 
-        <section id="magias">
-            <h2>Magias</h2>
-            </section>
+            <div id="recursos-bardo" style="display: none;">
+                </div>
 
-        <section id="equipamentos">
-            <h2>Equipamentos</h2>
-            </section>
-    </div>
+            <div id="recursos-clerigo" style="display: none;">
+                <h3>Canalizar Divindade</h3>
+                <div class="campo-duplo">
+                    <label for="canalizar-divindade-atual">Atual:</label>
+                    <input type="number" id="canalizar-divindade-atual" name="canalizar-divindade-atual" min="0" value="0">
+                    <label for="canalizar-divindade-max">Máximo:</label>
+                    <input type="number" id="canalizar-divindade-max" name="canalizar-divindade-max" min="0" value="0" readonly>
+                </div>
+                <button onclick="usarRecurso('canalizar-divindade')">Usar Canalizar Divindade</button>
+                <button onclick="restaurarRecursos('canalizar-divindade', 'curto')">Descanso Curto</button>
+                <button onclick="restaurarRecursos('canalizar-divindade', 'longo')">Descanso Longo</button>
+            </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+            <div id="recursos-druida" style="display: none;">
+                </div>
+
+            <div id="recursos-guerreiro" style="display: none;">
+                <h3>Surto de Ação</h3>
+                <div class="campo-duplo">
+                    <label for="surto-acao-atual">Atual:</label>
+                    <input type="number" id="surto-acao-atual" name="surto-acao-atual" min="0" value="0">
+                    <label for="surto-acao-max">Máximo:</label>
+                    <input type="number" id="surto-acao-max" name="surto-acao-max" min="0" value="0" readonly>
+                </div>
+                <button onclick="usarRecurso('surto-acao')">Usar Surto de Ação</button>
+                <button onclick="restaurarRecursos('surto-acao', 'curto')">Descanso Curto</button>
+                <button onclick="restaurarRecursos('surto-acao', 'longo')">Descanso Longo</button>
+            </div>
+
+            <div id="recursos-monge" style="display: none;">
+                <h3>Ki</h3>
+                <div class="campo-duplo">
+                    <label for="ki-atual">Ki Atual:</label>
+                    <input type="number" id="ki-atual" name="ki-atual" min="0" value="0">
+                    <label for="ki-max">Máximo de Ki:</label>
+                    <input type="number" id="ki-max" name="ki-max" min="0" value="0" readonly>
+                </div>
+                <button onclick="usarRecurso('ki')">Usar Ki</button>
+                <button onclick="restaurarRecursos('ki', 'longo')">Descanso Longo</button>
+            </div>
+
+            <div id="recursos-paladino" style="display: none;">
+                <h3>Canalizar Divindade</h3>
+                <div class="campo-duplo">
+                    <label for="canalizar-divindade-paladino-atual">Atual:</label>
+                    <input type="number" id="canalizar-divindade-paladino-atual" name="canalizar-divindade-paladino-atual" min="0" value="0">
+                    <label for="canalizar-divindade-paladino-max">Máximo:</label>
+                    <input type="number" id="canalizar-divindade-paladino-max" name="canalizar-divindade-paladino-max" min="0" value="0" readonly>
+                </div>
+                <button onclick="usarRecurso('canalizar-divindade-paladino')">Usar Canalizar Divindade</button>
+                <button onclick="restaurarRecursos('canalizar-divindade-paladino', 'curto')">Descanso Curto</button>
+                <button onclick="restaurarRecursos('canalizar-divindade-paladino', 'longo')">Descanso Longo</button>
+
+                <h3>Imposição de Mãos</h3>
+                <div class="campo-duplo">
+                    <label for="imposicao-maos-atual">Pontos Atuais:</label>
+                    <input type="number" id="imposicao-maos-atual" name="imposicao-maos-atual" min="0" value="0">
+                    <label for="imposicao-maos-max">Pontos Máximos:</label>
+                    <input type="number" id="imposicao-maos-max" name="imposicao-maos-max" min="0" value="0" readonly>
+                </div>
+                <button onclick="usarRecurso('imposicao-maos')">Usar Imposição de Mãos</button>
+                <button onclick="restaurarRecursos('imposicao-maos', 'longo')">Descanso Longo</button>
+            </div>
+
+            <div id="recursos-patrulheiro" style="display: none;">
+                </div>
+
+            <div id="recursos-ladino" style="display: none;">
+                <h3>Pontos de Astúcia</h3>
+                <div class="campo-duplo">
+                    <label for="pontos-astucia-atual">Atual:</label>
+                    <input type="number" id="pontos-astucia-atual" name="pontos-astucia-atual" min="0" value="0">
+                    <label for="pontos-astucia-max">Máximo:</label>
+                    <input type="number" id="pontos-astucia-max" name="pontos-astucia-max" min="0" value="0" readonly>
+                </div>
+                <button onclick="usarRecurso('pontos-astucia')">Usar Ponto de Astúcia</button>
+                <button onclick="restaurarRecursos('pontos-astucia', 'curto')">Descanso Curto</button>
+                <button onclick="restaurarRecursos('pontos-astucia', 'longo')">Descanso Longo</button>
+            </div>
+
+            <div id="recursos-feiticeiro" style="display: none;">
+                </div>
+
+            <div id="recursos-mago" style="display: none;">
+                </div>
+        </section>
