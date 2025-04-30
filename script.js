@@ -1,27 +1,4 @@
-const CLASSES_INFO = {
-    'barbaro': {
-        conjurador: false,
-        habilidades: [{ nome: 'Fúria', descricao: 'Entra em fúria em combate...', recurso: 'furia', maxBasePorNivel: [0, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6] }],
-        consumiveis: []
-    },
-    'bardo': {
-        conjurador: true,
-        atributoConjuração: 'inteligencia', // Mudança para Inteligência conforme a fórmula
-        habilidades: [{ nome: 'Inspiração Bardica', descricao: 'Pode inspirar outros...' }],
-        magiasPorCirculo: { 1: 2, 2: 0 },
-        consumiveis: []
-    },
-    'clerigo': {
-        conjurador: true,
-        atributoConjuração: 'inteligencia', // Mudança para Inteligência conforme a fórmula
-        habilidades: [{ nome: 'Canalizar Divindade', descricao: 'Invoca o poder divino...', recurso: 'canalizarDivindade', maxBasePorNivel: [0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3] }],
-        magiasPorCirculo: { 1: 2, 2: 0 },
-        consumiveis: []
-    },
-    'druida': {
-        conjurador: true,
-        atributoConjuração: 'inteligencia', // Mudança para Inteligência conforme a fórmula
-        habilidades: [{ nome: 'Forma Selvagem', descricao: 'Transforma-se em animais...' }],
+Forma Selvagem', descricao: 'Transforma-se em animais...' }],
         magiasPorCirculo: { 1: 2, 2: 0 },
         consumiveis: []
     },
@@ -42,14 +19,14 @@ const CLASSES_INFO = {
     },
     'paladino': {
         conjurador: true,
-        atributoConjuração: 'inteligencia', // Mudança para Inteligência conforme a fórmula
+        atributoConjuração: 'carisma',
         habilidades: [{ nome: 'Imposição de Mãos', descricao: 'Cura com toque divino...', recurso: 'canalizarDivindadePaladino', maxBasePorNivel: [0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3] }],
         magiasPorCirculo: { 1: 2, 2: 0 },
         consumiveis: []
     },
     'patrulheiro': {
         conjurador: true,
-        atributoConjuração: 'inteligencia', // Mudança para Inteligência conforme a fórmula
+        atributoConjuração: 'sabedoria',
         habilidades: [{ nome: 'Companheiro Animal', descricao: 'Um fiel aliado animal...' }],
         magiasPorCirculo: { 1: 2, 2: 0 },
         consumiveis: []
@@ -61,14 +38,14 @@ const CLASSES_INFO = {
     },
     'feiticeiro': {
         conjurador: true,
-        atributoConjuração: 'inteligencia', // Mudança para Inteligência conforme a fórmula
+        atributoConjuração: 'carisma',
         habilidades: [{ nome: 'Pontos de Feitiçaria', descricao: 'Usados para metamagias...', recurso: 'pontosFeiticaria', maxBasePorNivel: [0, 0, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11] }],
         magiasPorCirculo: { 1: 2, 2: 0 },
         consumiveis: []
     },
     'mago': {
         conjurador: true,
-        atributoConjuração: 'inteligencia', // Mudança para Inteligência conforme a fórmula
+        atributoConjuração: 'inteligencia',
         habilidades: [{ nome: 'Recuperação Arcana', descricao: 'Recupera espaços de magia em descanso curto...' }],
         magiasPorCirculo: { 1: 2, 2: 0 },
         consumiveis: []
@@ -157,23 +134,41 @@ function alterarHP(delta) {
 }
 
 function atualizarCDMagia() {
-    const inteligencia = parseInt(document.getElementById('inteligencia').value) || 10;
-    const modificadorInteligencia = calcularModificador(inteligencia);
-    const bonusProf = getBonusProficiencia();
-    const bonusUsuario = parseInt(document.getElementById('bonus-cd').value) || 0;
-    const cdBase = 8 + modificadorInteligencia + bonusProf - bonusUsuario;
-    document.getElementById('cd-magia-base').textContent = 8 + modificadorInteligencia + bonusProf;
-    document.getElementById('cd-magia-total').textContent = cdBase;
+    const classeSelecionada = document.getElementById('classe').value;
+    const infoClasse = CLASSES_INFO[classeSelecionada];
+    const atributoConjuração = infoClasse ? infoClasse.atributoConjuração : null;
+
+    if (atributoConjuração) {
+        const valorAtributo = parseInt(document.getElementById(atributoConjuração).value) || 10;
+        const modificadorAtributo = calcularModificador(valorAtributo);
+        const bonusProf = getBonusProficiencia();
+        const bonusUsuario = parseInt(document.getElementById('bonus-cd').value) || 0;
+        const cdBase = 8 + modificadorAtributo + bonusProf - bonusUsuario;
+        document.getElementById('cd-magia-base').textContent = 8 + modificadorAtributo + bonusProf;
+        document.getElementById('cd-magia-total').textContent = cdBase;
+    } else {
+        document.getElementById('cd-magia-base').textContent = '';
+        document.getElementById('cd-magia-total').textContent = '';
+    }
 }
 
 function atualizarModAtaqueMagia() {
-    const inteligencia = parseInt(document.getElementById('inteligencia').value) || 10;
-    const modificadorInteligencia = calcularModificador(inteligencia);
-    const bonusProf = getBonusProficiencia();
-    const bonusUsuario = parseInt(document.getElementById('bonus-ataque-magia').value) || 0;
-    const ataqueBase = modificadorInteligencia + bonusProf - bonusUsuario;
-    document.getElementById('mod-ataque-magia-base').textContent = `<span class="math-inline">\{modificadorInteligencia \+ bonusProf \>\= 0 ? '\+' \: ''\}</span>{modificadorInteligencia + bonusProf}`;
-    document.getElementById('mod-ataque-magia-total').textContent = `<span class="math-inline">\{ataqueBase \>\= 0 ? '\+' \: ''\}</span>{ataqueBase}`;
+    const classeSelecionada = document.getElementById('classe').value;
+    const infoClasse = CLASSES_INFO[classeSelecionada];
+    const atributoConjuração = infoClasse ? infoClasse.atributoConjuração : null;
+
+    if (atributoConjuração) {
+        const valorAtributo = parseInt(document.getElementById(atributoConjuração).value) || 10;
+        const modificadorAtributo = calcularModificador(valorAtributo);
+        const bonusProf = getBonusProficiencia();
+        const bonusUsuario = parseInt(document.getElementById('bonus-ataque-magia').value) || 0;
+        const ataqueBase = modificadorAtributo + bonusProf - bonusUsuario;
+        document.getElementById('mod-ataque-magia-base').textContent = `<span class="math-inline">\{modificadorAtributo \+ bonusProf \>\= 0 ? '\+' \: ''\}</span>{modificadorAtributo + bonusProf}`;
+        document.getElementById('mod-ataque-magia-total').textContent = `<span class="math-inline">\{ataqueBase \>\= 0 ? '\+' \: ''\}</span>{ataqueBase}`;
+    } else {
+        document.getElementById('mod-ataque-magia-base').textContent = '';
+        document.getElementById('mod-ataque-magia-total').textContent = '';
+    }
 }
 
 function exibirMagiasPorCirculo() {
@@ -189,6 +184,8 @@ function exibirMagiasPorCirculo() {
             divCirculo.innerHTML = `<strong>Círculo <span class="math-inline">\{circulo\}\:</strong\> <input type\="number" value\="</span>{quantidade}" size="2"> espaços`;
             magiasPorCirculoDiv.appendChild(divCirculo);
         }
+    } else {
+        magiasPorCirculoDiv.innerHTML = '';
     }
 }
 
@@ -234,9 +231,7 @@ function exibirConsumiveis() {
                 consumiveisDiv.appendChild(p);
             }
         } else {
-            const p = document.createElement('p');
-            p.textContent = 'Nenhuma habilidade com recurso ou consumível definida para esta classe.';
-            consumiveisDiv.appendChild(p);
+            consumiveisDiv.innerHTML = '<p>Nenhuma habilidade com recurso ou consumível definida para esta classe.</p>';
         }
     }
 }
@@ -272,3 +267,28 @@ function exibirHabilidadesClasse() {
             }
         });
         if (habilidadesDiv.children.length === 1 && habilidadesDiv.firstChild.tagName === 'H3') {
+            const p = document.createElement('p');
+            p.textContent = 'Nenhuma habilidade de classe adicional.';
+            habilidadesDiv.appendChild(p);
+        }
+    } else {
+        habilidadesDiv.innerHTML = '<p>Nenhuma habilidade de classe definida.</p>';
+    }
+}
+
+function atualizarInfoClasse() {
+    const classeSelecionada = document.getElementById('classe').value;
+    const infoClasse = CLASSES_INFO[classeSelecionada];
+    const magiasDiv = document.getElementById('magias');
+    const infoConjuradorDiv = document.getElementById('info-conjurador');
+    const atributoConjuraçãoSpan = document.getElementById('atributo-conjuração');
+
+    exibirHabilidadesClasse();
+    exibirConsumiveis();
+
+    if (infoClasse && infoClasse.conjurador) {
+        magiasDiv.style.display = 'block';
+        atributoConjuraçãoSpan.textContent = infoClasse.atributoConjuração.charAt(0).toUpperCase() + infoClasse.atributoConjuração.slice(1);
+        atualizarCDMagia();
+        atualizarModAtaqueMagia();
+        exibirMagias
