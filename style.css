@@ -1,8 +1,12 @@
 body {
-    font-family: 'Book Antiqua', serif; /* Uma fonte com aparência de livro antigo */
-    background-color: #332218; /* Cor de couro escuro */
+    font-family: 'MedievalSharp', cursive; /* Uma fonte medieval com um toque irado */
+    background-image: url('https://i.imgur.com/hkM6W7n.jpg'); /* Uma textura de pergaminho envelhecido */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #d4a373; /* Cor de pergaminho claro para o texto */
     margin: 0;
-    padding: 20px;
+    padding: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,89 +14,95 @@ body {
 }
 
 .grimorio-container {
-    background-color: #f7f2e7; /* Cor de papel antigo */
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
-    width: 90%;
-    max-width: 900px;
-    border: 2px solid #a0805a; /* Borda cor de pergaminho */
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo preto semi-transparente */
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.9);
+    width: 95%;
+    max-width: 1200px;
+    border: 3px solid #b8860b; /* Borda dourada escura */
 }
 
 header {
     text-align: center;
-    margin-bottom: 30px;
-    color: #8b4513; /* Cor de sela */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    margin-bottom: 40px;
+    color: #ffc107; /* Amarelo dourado para o título */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-h1, h2 {
-    color: #8b4513;
+h1, h2, h3 {
+    color: #ffc107;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 section {
-    margin-bottom: 25px;
-    padding: 20px;
-    border: 1px dashed #a0805a;
-    border-radius: 6px;
-    background-color: #fffaf0; /* Cor de linho */
+    margin-bottom: 30px;
+    padding: 30px;
+    border: 2px dashed #8b4513; /* Borda marrom escura tracejada */
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo preto mais transparente */
 }
 
 .campo, .atributo, .pericia, #defesa .campo-inline, #pontos-vida .campo-inline {
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
 .campo label, .atributo label, .pericia label, #defesa .campo-inline label, #pontos-vida .campo-inline label {
-    width: 180px;
-    margin-right: 15px;
+    width: 200px;
+    margin-right: 20px;
     text-align: right;
     font-weight: bold;
-    color: #5e260d; /* Cor de mogno */
+    color: #f0e68c; /* Cor de cáqui clara para as labels */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .campo input[type="text"],
 .campo input[type="number"],
 .campo select {
-    padding: 10px;
-    border: 1px solid #a0805a;
-    border-radius: 4px;
+    padding: 12px;
+    border: 1px solid #8b4513;
+    border-radius: 6px;
     flex-grow: 1;
-    background-color: #fdf5e6; /* Cor de pergaminho claro */
-    color: #333;
+    background-color: #333; /* Fundo cinza escuro para os inputs */
+    color: #d4a373;
 }
 
 #atributos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
 }
 
 .atributo input[type="number"] {
-    width: 60px;
-    margin-right: 5px;
+    width: 70px;
+    margin-right: 10px;
+    text-align: center;
 }
 
 .atributo .modificador {
-    font-size: 0.9em;
-    color: #777;
+    font-size: 1.1em;
+    color: #daa520; /* Cor dourada para o modificador */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 #defesa .campo-inline label {
     width: auto;
-    margin-left: 10px;
+    margin-left: 15px;
 }
 
 #defesa .campo-inline input[type="number"] {
-    width: 50px;
+    width: 60px;
+    text-align: center;
 }
 
 #defesa #ca-total {
     font-weight: bold;
-    color: #8b4513;
-    margin-left: 10px;
-    font-size: 1.1em;
+    color: #ff8c00; /* Cor laranja escura para o CA total */
+    margin-left: 15px;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 #pontos-vida .campo-inline label {
@@ -100,107 +110,131 @@ section {
 }
 
 #pontos-vida .campo-inline input[type="number"] {
-    width: 60px;
-    margin: 0 5px;
+    width: 70px;
+    margin: 0 10px;
     text-align: center;
 }
 
 #pontos-vida .campo-inline button {
-    padding: 5px 10px;
-    border: 1px solid #a0805a;
-    border-radius: 4px;
-    background-color: #e6d7b9;
-    color: #5e260d;
+    padding: 8px 15px;
+    border: 1px solid #8b4513;
+    border-radius: 6px;
+    background-color: #555;
+    color: #f0e68c;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#pontos-vida .campo-inline button:hover {
+    background-color: #777;
 }
 
 #pericias {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px 20px;
+    gap: 15px 30px;
 }
 
 .pericia input[type="checkbox"] {
-    margin-right: 8px;
+    margin-right: 10px;
 }
 
 .valor-pericia {
-    width: 30px;
+    width: 40px;
     text-align: right;
     font-weight: bold;
-    color: #337ab7;
+    color: #4682b4; /* Cor azul aço para o valor da perícia */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 #habilidades-e-magias {
-    display: flex;
-    flex-direction: column; /* Organiza habilidades, consumíveis e magias verticalmente */
-    gap: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Layout em três colunas */
+    gap: 20px;
 }
 
 #habilidades, #consumiveis, #magias {
-    padding: 20px;
-    border: 1px solid #a0805a;
-    border-radius: 6px;
-    background-color: #fdf5e6;
-    color: #333;
+    padding: 25px;
+    border: 2px solid #8b4513;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 #habilidades h3, #consumiveis h3, #magias h3, #magias-por-circulo h3 {
-    color: #8b4513;
+    color: #daa520;
     margin-top: 0;
-    border-bottom: 1px solid #a0805a;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
+    border-bottom: 2px solid #8b4513;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 #info-conjurador {
-    margin-bottom: 15px;
-    padding: 15px;
-    border: 1px solid #a0805a;
-    border-radius: 4px;
-    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 2px solid #8b4513;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 #info-conjurador p {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+}
+
+#info-conjurador span {
+    color: #4682b4;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 #info-conjurador input[type="number"] {
-    width: 40px;
+    width: 50px;
     text-align: center;
+    background-color: #333;
+    color: #d4a373;
+    border: 1px solid #8b4513;
+    border-radius: 4px;
+    padding: 8px;
 }
 
 #magias-por-circulo {
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .consumivel-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .consumivel-item label {
     font-weight: bold;
-    color: #5e260d;
+    color: #f0e68c;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .consumivel-item input[type="number"] {
-    width: 50px;
+    width: 60px;
     text-align: center;
+    background-color: #333;
+    color: #d4a373;
+    border: 1px solid #8b4513;
+    border-radius: 4px;
+    padding: 8px;
 }
 
 .recurso-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .recurso-item label {
     font-weight: bold;
-    color: #5e260d;
+    color: #f0e68c;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 .recurso-item .recurso-controls {
@@ -209,16 +243,22 @@ section {
 }
 
 .recurso-item button {
-    padding: 5px 10px;
-    margin: 0 5px;
-    border: 1px solid #a0805a;
-    border-radius: 4px;
-    background-color: #e6d7b9;
-    color: #5e260d;
+    padding: 8px 12px;
+    margin: 0 8px;
+    border: 1px solid #8b4513;
+    border-radius: 6px;
+    background-color: #555;
+    color: #f0e68c;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.recurso-item button:hover {
+    background-color: #777;
 }
 
 .recurso-item span {
-    font-size: 0.9em;
-    color: #777;
+    font-size: 1em;
+    color: #daa520;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
