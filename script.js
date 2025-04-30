@@ -1,155 +1,116 @@
-// Dados sobre as classes e seus atributos chave de conjuração e recursos
-const infoClasses = {
-    'barbaro': { conjurador: false, recursos: { furia: { maxBasePorNivel: [0, 2, 2, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6], tipoRecuperacao: 'longo' } } },
-    'bardo': { conjurador: true, atributoConjuração: 'carisma', recursos: {} }, // Inspiração Bardica pode ser mais complexa
-    'clerigo': { conjurador: true, atributoConjuração: 'sabedoria', recursos: { canalizarDivindade: { maxBasePorNivel: [0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3], tipoRecuperacao: 'curto' } } },
-    'druida': { conjurador: true, atributoConjuração: 'sabedoria', recursos: {} }, // Forma Selvagem tem regras específicas
-    'guerreiro': { conjurador: false, recursos: { surtoAcao: { maxBasePorNivel: [0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], tipoRecuperacao: 'curto' } } },
-    'monge': { conjurador: false, kiBasePorNivel: [0, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], recursos: { ki: { tipoRecuperacao: 'longo' } } },
-    'paladino': { conjurador: true, atributoConjuração: 'carisma', recursos: { canalizarDivindadePaladino: { maxBasePorNivel: [0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3], tipoRecuperacao: 'curto' }, imposicaoMaos: { maxBasePorNivel: [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100], tipoRecuperacao: 'longo' } } },
-    'patrulheiro': { conjurador: true, atributoConjuração: 'sabedoria', recursos: {} }, // Foco do Caçador, etc. podem ser rastreados individualmente se necessário
-    'ladino': { conjurador: false, recursos: { pontosAstucia: { maxBasePorNivel: [0, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11], tipoRecuperacao: 'curto' } } },
-    'feiticeiro': { conjurador: true, atributoConjuração: 'carisma', recursos: {} }, // Pontos de Feitiçaria e Metamagias são complexos
-    'mago': { conjurador: true, atributoConjuração: 'inteligencia', recursos: {} } // Recuperação Arcana é por descanso curto
+const CLASSES_INFO = {
+    'barbaro': { conjurador: false, habilidades: [{ nome: 'Fúria', descricao: 'Entra em fúria em combate...' }] },
+    'bardo': { conjurador: true, atributoConjuração: 'carisma', habilidades: [{ nome: 'Inspiração Bardica', descricao: 'Pode inspirar outros...' }] },
+    'clerigo': { conjurador: true, atributoConjuração: 'sabedoria', habilidades: [{ nome: 'Canalizar Divindade', descricao: 'Invoca o poder divino...' }] },
+    'druida': { conjurador: true, atributoConjuração: 'sabedoria', habilidades: [{ nome: 'Forma Selvagem', descricao: 'Transforma-se em animais...' }] },
+    'guerreiro': { conjurador: false, habilidades: [{ nome: 'Surto de Ação', descricao: 'Realiza uma ação extra...' }, { nome: 'Segundo Fôlego', descricao: 'Recupera pontos de vida...' }] },
+    'monge': { conjurador: false, habilidades: [{ nome: 'Artes Marciais', descricao: 'Golpes desarmados aprimorados...' }, { nome: 'Ki', descricao: 'Energia espiritual para habilidades...' }] },
+    'paladino': { conjurador: true, atributoConjuração: 'carisma', habilidades: [{ nome: 'Imposição de Mãos', descricao: 'Cura com toque divino...' }, { nome: 'Golpe Divino', descricao: 'Adiciona dano radiante...' }] },
+    'patrulheiro': { conjurador: true, atributoConjuração: 'sabedoria', habilidades: [{ nome: 'Inimigo Favorecido', descricao: 'Bônus contra certos tipos de criaturas...' }, { nome: 'Explorador Nato', descricao: 'Habilidade em terrenos selvagens...' }] },
+    'ladino': { conjurador: false, habilidades: [{ nome: 'Ataque Furtivo', descricao: 'Dano extra em ataques sorrateiros...' }, { nome: 'Ação Bônus Astuta', descricao: 'Ações bônus adicionais...' }] },
+    'feiticeiro': { conjurador: true, atributoConjuração: 'carisma', habilidades: [{ nome: 'Metamagias', descricao: 'Modifica seus truques e magias...' }, { nome: 'Fonte de Magia', descricao: 'Pontos de feitiçaria...' }] },
+    'mago': { conjurador: true, atributoConjuração: 'inteligencia', habilidades: [{ nome: 'Recuperação Arcana', descricao: 'Recupera espaços de magia em descanso curto...' }] }
 };
 
-let bonusProficiencia = 2; // Valor inicial
+const ATRIBUTOS = ['forca', 'destreza', 'constituicao', 'inteligencia', 'sabedoria', 'carisma'];
+const PERICIAS_INFO = {
+    'acrobacia': 'destreza', 'adestramento-animais': 'sabedoria', 'arcanismo': 'inteligencia', 'atletismo': 'forca',
+    'atuacao': 'carisma', 'enganacao': 'carisma', 'furtividade': 'destreza', 'historia': 'inteligencia',
+    'intimidacao': 'carisma', 'intuicao': 'sabedoria', 'investigacao': 'inteligencia', 'medicina': 'sabedoria',
+    'natureza': 'inteligencia', 'percepcao': 'sabedoria', 'persuasao': 'carisma', 'prestidigitacao': 'destreza',
+    'religiao': 'inteligencia', 'sobrevivencia': 'sabedoria', 'sigilo': 'destreza'
+};
+
+let nivelPersonagem = 1;
 
 function calcularModificador(atributo) {
     return Math.floor((atributo - 10) / 2);
 }
 
-function atualizarModificadores() {
-    const atributos = {
-        forca: parseInt(document.getElementById('forca').value),
-        destreza: parseInt(document.getElementById('destreza').value),
-        constituicao: parseInt(document.getElementById('constituicao').value),
-        inteligencia: parseInt(document.getElementById('inteligencia').value),
-        sabedoria: parseInt(document.getElementById('sabedoria').value),
-        carisma: parseInt(document.getElementById('carisma').value)
-    };
-
-    for (const atributo in atributos) {
-        const modificador = calcularModificador(atributos[atributo]);
-        document.getElementById(`mod-${atributo}`).textContent = `(<span class="math-inline">\{modificador \>\= 0 ? '\+' \: ''\}</span>{modificador})`;
-    }
-
-    atualizarCDMagia();
-    atualizarModAtaqueMagia();
-    atualizarRecursosVisuais(); // Atualiza a visibilidade dos recursos
-    atualizarPericias(); // Garante que as perícias sejam atualizadas com os novos modificadores
+function getBonusProficiencia() {
+    if (nivelPersonagem >= 1 && nivelPersonagem <= 4) return 2;
+    if (nivelPersonagem >= 5 && nivelPersonagem <= 8) return 3;
+    if (nivelPersonagem >= 9 && nivelPersonagem <= 12) return 4;
+    if (nivelPersonagem >= 13 && nivelPersonagem <= 16) return 5;
+    if (nivelPersonagem >= 17 && nivelPersonagem <= 20) return 6;
+    return 0;
 }
 
-function atualizarProficiencia() {
-    const nivel = parseInt(document.getElementById('nivel').value);
-    if (nivel >= 1 && nivel <= 4) bonusProficiencia = 2;
-    else if (nivel >= 5 && nivel <= 8) bonusProficiencia = 3;
-    else if (nivel >= 9 && nivel <= 12) bonusProficiencia = 4;
-    else if (nivel >= 13 && nivel <= 16) bonusProficiencia = 5;
-    else if (nivel >= 17 && nivel <= 20) bonusProficiencia = 6;
+function atualizarModificadores() {
+    ATRIBUTOS.forEach(atributo => {
+        const valorAtributo = parseInt(document.getElementById(atributo).value);
+        const modificador = calcularModificador(valorAtributo);
+        const modificadorSpan = document.querySelector(`.modificador[data-atributo="${atributo}"]`);
+        modificadorSpan.textContent = `(${modificador >= 0 ? '+' : ''}${modificador})`;
+    });
+    atualizarInfoClasse();
+    atualizarPericias();
+}
 
-    atualizarCDMagia();
-    atualizarModAtaqueMagia();
-    atualizarRecursosMaximos(); // Atualiza o valor máximo dos recursos
-    atualizarPericias(); // Garante que as perícias sejam atualizadas com o novo bônus de proficiência
+function atualizarPericias() {
+    const bonusProf = getBonusProficiencia();
+    for (const pericia in PERICIAS_INFO) {
+        const atributoBase = PERICIAS_INFO[pericia];
+        const valorAtributo = parseInt(document.getElementById(atributoBase).value);
+        const modificadorAtributo = calcularModificador(valorAtributo);
+        const proficiente = document.getElementById(`pericia-${pericia}`).checked;
+        const valorTotal = modificadorAtributo + (proficiente ? bonusProf : 0);
+        const valorPericiaSpan = document.querySelector(`.valor-pericia[data-pericia="${pericia}"]`);
+        valorPericiaSpan.textContent = `${valorTotal >= 0 ? '+' : ''}${valorTotal}`;
+    }
 }
 
 function atualizarInfoClasse() {
     const classeSelecionada = document.getElementById('classe').value;
-    const infoClasse = infoClasses[classeSelecionada];
-
-    // Esconde todas as seções de recursos por padrão
-    document.querySelectorAll('#habilidades > div[id^="recursos-"]').forEach(div => {
-        div.style.display = 'none';
-    });
-    const recursosMongeDiv = document.getElementById('recursos-monge');
-    if (recursosMongeDiv) recursosMongeDiv.style.display = 'none'; // Garante que a div do monge também esteja escondida inicialmente
-
-
-    // Mostra as seções de recursos da classe selecionada
-    if (infoClasse && infoClasse.recursos) {
-        for (const recurso in infoClasse.recursos) {
-            const divRecursoId = `recursos-${recurso.replace(/([A-Z])/g, '-$1').toLowerCase()}`;
-            const divRecurso = document.getElementById(divRecursoId);
-            if (divRecurso) {
-                divRecurso.style.display = 'block';
-                atualizarRecursosMaximos(recurso);
-            }
-        }
-    }
-
-    // Lógica específica para Ki do Monge (fora do loop de recursos genéricos)
-    if (infoClasse && infoClasse.kiBasePorNivel) {
-        const recursosMongeDiv = document.getElementById('recursos-monge');
-        if (recursosMongeDiv) {
-            recursosMongeDiv.style.display = 'block';
-            atualizarRecursosMaximos('ki');
-        }
-    }
-
-    // Controle da seção de Magias para Conjuradores
-    const infoConjuradorDiv = document.getElementById('info-conjurador');
-    if (infoClasse && infoClasse.conjurador === true && infoClasse.atributoConjuração) {
-        infoConjuradorDiv.style.display = 'block';
-        document.getElementById('atributo-conjuração').textContent = obterNomeAtributo(infoClasse.atributoConjuração);
-        atualizarCDMagia();
-        atualizarModAtaqueMagia();
-    } else {
-        infoConjuradorDiv.style.display = 'none';
-    }
-
-    // Mostra/esconde a seção de habilidades para não conjuradores
+    const infoClasse = CLASSES_INFO[classeSelecionada];
     const habilidadesDiv = document.getElementById('habilidades');
-    if (infoClasse && !infoClasse.conjurador && Object.keys(infoClasse.recursos).length > 0 || (infoClasse && infoClasse.kiBasePorNivel)) {
-        habilidadesDiv.style.display = 'block';
-    } else if (infoClasse && !infoClasse.conjurador) {
-        habilidadesDiv.style.display = 'block'; // Manter visível mesmo sem recursos específicos
-    } else {
-        // Se for conjurador e não tiver recursos específicos (além de magia), pode manter visível ou ajustar conforme necessário
-        habilidadesDiv.style.display = 'block';
-    }
-
-    // Mostra/esconde a seção de magias para conjuradores
     const magiasDiv = document.getElementById('magias');
-    if (infoClasse && infoClasse.conjurador === true) {
-        magiasDiv.style.display = 'block';
-    } else {
-        magiasDiv.style.display = 'none';
+    const infoConjuradorDiv = document.getElementById('info-conjurador');
+    const atributoConjuraçãoSpan = document.getElementById('atributo-conjuração');
+    const cdMagiaSpan = document.getElementById('cd-magia');
+    const modAtaqueMagiaSpan = document.getElementById('mod-ataque-magia');
+
+    habilidadesDiv.innerHTML = '';
+    magiasDiv.style.display = 'none';
+
+    if (infoClasse) {
+        if (infoClasse.habilidades && infoClasse.habilidades.length > 0) {
+            const h3 = document.createElement('h3');
+            h3.textContent = 'Habilidades de Classe';
+            habilidadesDiv.appendChild(h3);
+            infoClasse.habilidades.forEach(habilidade => {
+                const p = document.createElement('p');
+                p.textContent = `${habilidade.nome}: ${habilidade.descricao}`;
+                habilidadesDiv.appendChild(p);
+            });
+        }
+
+        if (infoClasse.conjurador) {
+            magiasDiv.style.display = 'block';
+            atributoConjuraçãoSpan.textContent = infoClasse.atributoConjuração.charAt(0).toUpperCase() + infoClasse.atributoConjuração.slice(1);
+            const atributoValor = parseInt(document.getElementById(infoClasse.atributoConjuração).value);
+            const modificadorAtributo = calcularModificador(atributoValor);
+            const bonusProf = getBonusProficiencia();
+            cdMagiaSpan.textContent = 8 + bonusProf + modificadorAtributo;
+            modAtaqueMagiaSpan.textContent = `${modificadorAtributo + bonusProf >= 0 ? '+' : ''}${modificadorAtributo + bonusProf}`;
+        }
     }
 }
 
-function obterNomeAtributo(atributo) {
-    switch (atributo) {
-        case 'forca': return 'Força';
-        case 'destreza': return 'Destreza';
-        case 'constituicao': return 'Constituição';
-        case 'inteligencia': return 'Inteligência';
-        case 'sabedoria': return 'Sabedoria';
-        case 'carisma': return 'Carisma';
-        default: return '';
-    }
+function atualizarFicha() {
+    nivelPersonagem = parseInt(document.getElementById('nivel').value);
+    atualizarModificadores();
+    atualizarInfoClasse();
 }
 
-function atualizarCDMagia() {
-    const classeSelecionada = document.getElementById('classe').value;
-    const infoClasse = infoClasses[classeSelecionada];
-
-    if (infoClasse && infoClasse.conjurador && infoClasse.atributoConjuração) {
-        const atributoChave = parseInt(document.getElementById(infoClasse.atributoConjuração).value);
-        const modificadorAtributo = calcularModificador(atributoChave);
-        const cdMagia = 8 + bonusProficiencia + modificadorAtributo;
-        document.getElementById('cd-magia').textContent = cdMagia;
-    } else {
-        document.getElementById('cd-magia').textContent = '';
+// Inicialização
+document.addEventListener('DOMContentLoaded', () => {
+    const classeSelect = document.getElementById('classe');
+    for (const classe in CLASSES_INFO) {
+        const option = document.createElement('option');
+        option.value = classe;
+        option.textContent = classe.charAt(0).toUpperCase() + classe.slice(1);
+        classeSelect.appendChild(option);
     }
-}
-
-function atualizarModAtaqueMagia() {
-    const classeSelecionada = document.getElementById('classe').value;
-    const infoClasse = infoClasses[classeSelecionada];
-
-    if (infoClasse && infoClasse.conjurador && infoClasse.atributoConjuração) {
-        const atributoChave = parseInt(document.getElementById(infoClasse.atributoConjuração).value);
-        const modificadorAtributo = calcularModificador(atributoChave);
-        const modAtaqueMagia = bonusProficiencia + modificadorAtributo;
-        document.getElementById('mod-ataque-magia').textContent = `<span class="math-inline">\{modAtaqueMagia \>\= 0 ? '\+' \: ''\}</span>{modAta
+    atualizarFicha();
+});

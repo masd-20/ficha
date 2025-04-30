@@ -39,9 +39,10 @@ section {
 }
 
 .campo label {
-    width: 180px;
+    width: 150px;
     margin-right: 10px;
     text-align: right;
+    font-weight: bold;
 }
 
 .campo input[type="text"],
@@ -53,24 +54,29 @@ section {
     flex-grow: 1;
 }
 
+#atributos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
 .atributo {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
 }
 
 .atributo label {
-    width: 100px;
-    margin-right: 10px;
-    text-align: right;
+    width: auto;
+    margin-right: 5px;
+    font-weight: bold;
 }
 
 .atributo input[type="number"] {
-    width: 60px;
+    width: 50px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .atributo .modificador {
@@ -78,107 +84,9 @@ section {
     color: #777;
 }
 
-/* Estilos para a seção de habilidades e recursos */
-#habilidades h3 {
-    margin-top: 0;
-    color: #555;
-}
-
-#habilidades > div[id^="recursos-"] {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-}
-
-.campo-duplo {
-    display: grid;
-    grid-template-columns: auto 1fr auto 1fr; /* Layout para label-input-label-input */
-    gap: 10px;
-    margin-bottom: 10px;
-    align-items: center;
-}
-
-.campo-duplo label {
-    text-align: right;
-    font-weight: bold;
-}
-
-.campo-duplo input[type="number"] {
-    width: 70px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-#habilidades button {
-    padding: 8px 15px;
-    margin-right: 10px;
-    border: none;
-    border-radius: 4px;
-    background-color: #5cb85c;
-    color: white;
-    cursor: pointer;
-    font-size: 0.9em;
-}
-
-#habilidades button:hover {
-    background-color: #4cae4c;
-}
-
-/* Estilos para a seção de magias */
-#magias #info-conjurador {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-}
-
-#magias #info-conjurador .campo {
-    margin-bottom: 8px;
-}
-
-#magias #info-conjurador .campo label {
-    font-weight: bold;
-}
-
-#magias .ciclo-magia {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-}
-
-#magias .slots {
-    display: flex;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-#magias .slots label {
-    margin-right: 5px;
-    font-weight: bold;
-}
-
-#magias .slots input[type="number"] {
-    width: 50px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 10px;
-}
-
-#magias .magias-nivel {
-    /* Estilos para a lista de magias de cada nível (a ser implementado) */
-}
-
-/* Estilos para a seção de perícias */
 #pericias {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Layout em duas colunas para as perícias */
+    grid-template-columns: 1fr 1fr;
     gap: 8px 20px;
 }
 
@@ -199,5 +107,31 @@ section {
     width: 30px;
     text-align: right;
     font-weight: bold;
-    color: #337ab7; /* Um azul para destacar o valor */
+    color: #337ab7;
+}
+
+#habilidades-e-magias {
+    display: flex;
+    gap: 20px;
+}
+
+#habilidades, #magias {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+#habilidades h3, #magias h3 {
+    margin-top: 0;
+    color: #555;
+}
+
+#info-conjurador {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
 }
