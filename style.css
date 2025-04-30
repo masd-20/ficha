@@ -1,131 +1,163 @@
 body {
-    font-family: sans-serif;
+    font-family: 'Noto Serif', serif; /* Uma fonte serifada para um visual mais clássico */
     margin: 20px;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #f5f0e1; /* Um bege claro */
+    color: #3d3d3d; /* Um cinza mais escuro */
 }
 
 .container {
     max-width: 960px;
-    margin: 0 auto;
+    margin: 20px auto; /* Adiciona margem superior e inferior */
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Layout responsivo */
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 25px;
 }
 
 header {
-    grid-column: 1 / -1; /* Cabeçalho ocupa toda a largura */
+    grid-column: 1 / -1;
     text-align: center;
-    margin-bottom: 20px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #b8860b; /* Borda dourada */
 }
 
 .header-info {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .form-group label {
-    font-size: 0.9em;
+    font-size: 0.95em;
     color: #555;
-    margin-bottom: 5px;
+    margin-bottom: 6px;
+    font-weight: bold; /* Rótulos em negrito */
 }
 
 .form-group input[type="text"],
 .form-group input[type="number"],
 .form-group select {
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box; /* Impede que o padding aumente a largura */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1em;
 }
 
 main {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 20px;
+    grid-gap: 25px;
 }
 
 section {
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 20px;
+    border: 1px solid #a9a9a9; /* Cinza mais escuro para as bordas das seções */
+    border-radius: 8px;
     background-color: #f9f9f9;
 }
 
 section h2, section h3, section h4 {
-    font-size: 1.2em;
+    font-size: 1.3em;
     margin-top: 0;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #d2b48c; /* Borda marrom clara */
+    padding-bottom: 8px;
 }
 
 .abilities {
     grid-column: 1 / span 1;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
 .ability {
-    border: 1px solid #eee;
-    padding: 10px;
-    border-radius: 4px;
+    border: 1px solid #8fbc8f; /* Verde musgo para as habilidades */
+    padding: 15px;
+    border-radius: 6px;
     text-align: center;
+    background-color: #e0eee0; /* Verde claro de fundo */
+}
+
+.ability h2 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #a9a9a9;
+    padding-bottom: 5px;
 }
 
 .ability .score, .ability .modifier {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+}
+
+.ability .score label, .ability .modifier label {
+    font-weight: normal;
+    font-size: 0.9em;
+    color: #555;
 }
 
 .ability input[type="number"], .ability input[type="text"] {
-    width: 60px;
-    margin: 0 auto 5px;
+    width: 70px;
+    margin: 5px auto;
     text-align: center;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1.1em;
 }
 
 .ability .saving-throw, .ability .skills {
     text-align: left;
+    margin-top: 10px;
 }
 
 .combat-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-gap: 15px;
 }
 
 .combat-stats > div {
-    padding: 10px;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #deb887; /* Marrom areia para combate */
+    border-radius: 6px;
+    background-color: #f0e68c; /* Amarelo cáqui claro */
+}
+
+.combat-stats h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #d2b48c;
+    padding-bottom: 5px;
 }
 
 .hit-points {
     grid-column: 1 / -1;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
 }
 
 .hit-points input[type="number"] {
-    width: 80px;
+    width: 90px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
 }
 
 .death-saves {
@@ -133,97 +165,109 @@ section h2, section h3, section h4 {
 }
 
 .death-saves .successes, .death-saves .failures {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .other-info {
     display: flex;
-    gap: 20px;
+    gap: 25px;
 }
 
 .other-info > div {
     flex: 1;
-    padding: 10px;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #a9a9a9;
+    border-radius: 6px;
+    background-color: #f9f9f9;
 }
 
 .personality > div {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .personality textarea, .equipment textarea, .features-traits textarea, .proficiencies-languages textarea, .attacks-spellcasting textarea, .spell-levels textarea {
     width: 100%;
-    min-height: 80px;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    min-height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     box-sizing: border-box;
+    font-size: 1em;
 }
 
 .attacks-spellcasting h3 {
     border-bottom: none;
     padding-bottom: 0;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .attacks-spellcasting .spellcasting-info {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-gap: 10px;
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    background-color: #fff;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #deb887;
+    border-radius: 6px;
+    background-color: #f0e68c;
 }
 
 .attacks-spellcasting .spellcasting-info .form-group {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .attacks-spellcasting h4 {
-    margin-top: 15px;
+    margin-top: 20px;
+    border-bottom: 1px solid #d2b48c;
+    padding-bottom: 8px;
 }
 
 .spell-levels {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 10px;
-    margin-bottom: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-gap: 15px;
+    margin-bottom: 20px;
 }
 
 .spell-level {
-    padding: 10px;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #deb887;
+    border-radius: 6px;
+    background-color: #f0e68c;
 }
 
 .spell-level .slots {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+}
+
+.spell-level .slots label {
+    font-weight: bold;
 }
 
 .spell-level .slots input[type="number"] {
-    width: 50px;
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
 }
 
 .spell-level .spells-list {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
 }
 
 .spell-level .spells-list input[type="text"] {
     width: 100%;
-    padding: 6px;
-    border: 1px solid #ddd;
+    padding: 8px;
+    border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 1em;
 }
 
 .spell-level .spells-list label {
@@ -233,36 +277,42 @@ section h2, section h3, section h4 {
 .attacks-spellcasting table {
     width: 100%;
     border-collapse: collapse;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #a9a9a9;
+    border-radius: 5px;
+    overflow: hidden; /* Para garantir que a borda do table e do thead/tbody fiquem consistentes */
 }
 
 .attacks-spellcasting th, .attacks-spellcasting td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px;
     text-align: left;
 }
 
 .attacks-spellcasting th {
-    background-color: #f0f0f0;
+    background-color: #d2b48c; /* Marrom claro para o cabeçalho da tabela */
+    color: white;
+    font-weight: bold;
 }
 
 .attacks-spellcasting td input[type="text"], .attacks-spellcasting td select {
     width: 100%;
-    padding: 6px;
-    border: 1px solid #ddd;
+    padding: 8px;
+    border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-size: 1em;
 }
 
 .attacks-spellcasting button {
-    padding: 8px 15px;
+    padding: 10px 20px;
     background-color: #5cb85c;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    margin-bottom: 10px;
+    font-size: 1.1em;
+    margin-bottom: 15px;
 }
 
 .attacks-spellcasting button:hover {

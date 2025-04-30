@@ -5,24 +5,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const valorInput = document.getElementById(`${ability}-valor`);
         const modInput = document.getElementById(`${ability}-mod`);
 
-        valorInput.addEventListener('input', function() {
-            const valor = parseInt(valorInput.value);
-            let modificador = Math.floor((valor - 10) / 2);
-            modInput.value = isNaN(modificador) ? '' : modificador;
-        });
+        if (valorInput && modInput) { // Verifica se os elementos existem
+            valorInput.addEventListener('input', function() {
+                const valor = parseInt(valorInput.value);
+                let modificador = Math.floor((valor - 10) / 2);
+                modInput.value = isNaN(modificador) ? '' : modificador;
+            });
+        }
     });
 
     // Validação de HP
     const hpMaxInput = document.getElementById('pontos-vida-maximos');
     const hpAtualInput = document.getElementById('pontos-vida-atuais');
 
-    hpAtualInput.addEventListener('input', function() {
-        const maxHp = parseInt(hpMaxInput.value) || 0;
-        const currentHp = parseInt(hpAtualInput.value) || 0;
-        if (currentHp > maxHp) {
-            hpAtualInput.value = maxHp;
-        }
-    });
+    if (hpAtualInput && hpMaxInput) {
+        hpAtualInput.addEventListener('input', function() {
+            const maxHp = parseInt(hpMaxInput.value) || 0;
+            const currentHp = parseInt(hpAtualInput.value) || 0;
+            if (currentHp > maxHp) {
+                hpAtualInput.value = maxHp;
+            }
+        });
+    }
 
     // Gerenciamento de espaços de magia
     const spellLevels = document.querySelectorAll('.spell-level');
@@ -34,7 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function updateExpendedSlots() {
             const expended = Array.from(checkboxes).filter(cb => cb.checked).length;
-            expendedSlotsSpan.textContent = `${expended} Gasto(s)`;
+            if (expendedSlotsSpan) {
+                expendedSlotsSpan.textContent = `${expended} Gasto(s)`;
+            }
         }
 
         if (totalSlotsInput) {
@@ -64,8 +70,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const abilityModifierOutput = abilityModifierOutputs[spellAbility];
         const abilityModifier = parseInt(abilityModifierOutput.value) || 0;
 
-        spellSaveDcInput.value = 8 + proficiencyBonus + abilityModifier;
-        spellAttackBonusInput.value = proficiencyBonus + abilityModifier;
+        if (spellSaveDcInput) {
+            spellSaveDcInput.value = 8 + proficiencyBonus + abilityModifier;
+        }
+        if (spellAttackBonusInput) {
+            spellAttackBonusInput.value = proficiencyBonus + abilityModifier;
+        }
     }
 
     if (spellAbilitySelect && proficiencyBonusInput) {
@@ -96,7 +106,9 @@ document.addEventListener('DOMContentLoaded', function() {
             abilityModifier = parseInt(dexterityModInput.value) || 0;
         }
 
-        attackBonusInput.value = abilityModifier >= 0 ? `+${abilityModifier}` : `${abilityModifier}`;
+        if (attackBonusInput) {
+            attackBonusInput.value = abilityModifier >= 0 ? `+${abilityModifier}` : `${abilityModifier}`;
+        }
     }
 
     if (attacksTableBody) {
@@ -109,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    if (proficiencyBonusInput && strengthModInput && dexterityModInput) {
+    if (proficiencyBonusInput && strengthModInput && dexterityModInput && attacksTableBody) {
         proficiencyBonusInput.addEventListener('input', function() {
             const rows = attacksTableBody.querySelectorAll('tr');
             rows.forEach(updateAttackBonus);
@@ -140,6 +152,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     </select>
                 </td>
             `;
+            const newAbilitySelect = newRow.querySelector('.attack-ability');
+            if (newAbilitySelect) {
+                newAbilitySelect.addEventListener('change', function() {
+                    updateAttackBonus(newRow);
+                });
+            }
             updateAttackBonus(newRow);
         });
     }
