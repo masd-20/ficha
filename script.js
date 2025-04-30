@@ -32,7 +32,7 @@ classes.forEach(classe => {
       "CD de Magia": conjurador || meioConjurador ? "8 + Prof + Mod" : "-",
       "Truques Conhecidos": conjurador ? Math.min(6, 2 + Math.floor(nivel / 4)) : 0,
       "Magias Conhecidas/Preparadas": conjurador ? nivel + 2 : meioConjurador ? "Mod + Nível" : 0,
-      "Espaços de Magia": espacos
+      "Espaços de Magia por Nível": espacos
     };
 
     // Recursos únicos
