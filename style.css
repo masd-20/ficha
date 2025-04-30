@@ -1,320 +1,237 @@
+/* Estilos globais */
 body {
-    font-family: 'Noto Serif', serif; /* Uma fonte serifada para um visual mais clássico */
-    margin: 20px;
-    background-color: #f5f0e1; /* Um bege claro */
-    color: #3d3d3d; /* Um cinza mais escuro */
+    font-family: 'Noto Serif', serif;
+    background-color: #f4f1de; /* Bege claro */
+    color: #3e2723; /* Castanho escuro */
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
 }
 
 .container {
-    max-width: 960px;
-    margin: 20px auto; /* Adiciona margem superior e inferior */
+    max-width: 1200px;
+    margin: 0 auto;
     background-color: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
 }
 
+h1, h2, h3, h4 {
+    color: #5d4037; /* Castanho médio */
+    margin-top: 1.5em; /* Espaçamento acima dos títulos */
+    margin-bottom: 0.5em; /* Espaçamento abaixo dos títulos */
+    border-bottom: 2px solid #a1887f; /* Linha abaixo dos títulos */
+    padding-bottom: 0.2em; /* Espaçamento entre o texto e a linha */
+}
+
+/* Estilos do cabeçalho */
 header {
-    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap; /* Permite que os elementos quebrem para a linha seguinte em telas menores */
+    margin-bottom: 20px;
+}
+
+header h1 {
+    flex: 1 1 100%; /* Garante que o título ocupe a largura total */
     text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #b8860b; /* Borda dourada */
+    border-bottom: none; /* Remove a linha abaixo do título principal */
 }
 
 .header-info {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
+    gap: 10px 20px; /* Espaçamento entre linhas e colunas */
+    justify-content: space-around; /* Distribui os elementos uniformemente */
+    width: 100%; /* Garante que ocupe a largura total */
 }
 
 .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
+    flex: 1 1 200px; /* Tamanho flexível, mas com largura mínima */
 }
 
 .form-group label {
-    font-size: 0.95em;
-    color: #555;
-    margin-bottom: 6px;
-    font-weight: bold; /* Rótulos em negrito */
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #795548; /* Castanho claro */
 }
 
 .form-group input[type="text"],
-.form-group input[type="number"],
-.form-group select {
-    padding: 10px;
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 1em;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que o preenchimento não aumente o tamanho do elemento */
 }
 
-main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 25px;
-}
-
-section {
-    padding: 20px;
-    border: 1px solid #a9a9a9; /* Cinza mais escuro para as bordas das seções */
-    border-radius: 8px;
-    background-color: #f9f9f9;
-}
-
-section h2, section h3, section h4 {
-    font-size: 1.3em;
-    margin-top: 0;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #d2b48c; /* Borda marrom clara */
-    padding-bottom: 8px;
-}
-
+/* Estilos das habilidades */
 .abilities {
-    grid-column: 1 / span 1;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Cria colunas flexíveis */
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
 .ability {
-    border: 1px solid #8fbc8f; /* Verde musgo para as habilidades */
+    border: 1px solid #ccc;
     padding: 15px;
-    border-radius: 6px;
-    text-align: center;
-    background-color: #e0eee0; /* Verde claro de fundo */
+    border-radius: 8px;
+    background-color: #fff;
 }
 
 .ability h2 {
-    font-size: 1.4em;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #a9a9a9;
+    border-bottom: 1px solid #ccc;
     padding-bottom: 5px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 
-.ability .score, .ability .modifier {
+.score, .modifier, .saving-throw, .skills {
     display: flex;
     flex-direction: column;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
-.ability .score label, .ability .modifier label {
-    font-weight: normal;
-    font-size: 0.9em;
-    color: #555;
+.score label, .modifier label {
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.ability input[type="number"], .ability input[type="text"] {
-    width: 70px;
-    margin: 5px auto;
-    text-align: center;
+.score input, .modifier input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 1.1em;
+    width: 50px;
 }
 
-.ability .saving-throw, .ability .skills {
-    text-align: left;
-    margin-top: 10px;
+.skills .skill {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
 }
 
+.skills .skill input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Estilos de combate */
 .combat-stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
 .combat-stats > div {
-    padding: 15px;
-    border: 1px solid #deb887; /* Marrom areia para combate */
-    border-radius: 6px;
-    background-color: #f0e68c; /* Amarelo cáqui claro */
-}
-
-.combat-stats h3 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #d2b48c;
-    padding-bottom: 5px;
-}
-
-.hit-points {
-    grid-column: 1 / -1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.hit-points input[type="number"] {
-    width: 90px;
-    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1em;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
 }
 
-.death-saves {
-    text-align: center;
-}
-
-.death-saves .successes, .death-saves .failures {
-    margin-bottom: 8px;
-}
-
+/* Estilos de outras informações */
 .other-info {
-    display: flex;
-    gap: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
 .other-info > div {
-    flex: 1;
+    border: 1px solid #ccc;
     padding: 15px;
-    border: 1px solid #a9a9a9;
-    border-radius: 6px;
-    background-color: #f9f9f9;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+/* Estilos de personalidade */
+.personality {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
 .personality > div {
-    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #fff;
 }
 
-.personality textarea, .equipment textarea, .features-traits textarea, .proficiencies-languages textarea, .attacks-spellcasting textarea, .spell-levels textarea {
+.personality textarea {
     width: 100%;
     min-height: 100px;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 4px;
     box-sizing: border-box;
-    font-size: 1em;
+    resize: vertical; /* Permite redimensionar verticalmente */
 }
 
-.attacks-spellcasting h3 {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 10px;
-}
-
-.attacks-spellcasting .spellcasting-info {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    grid-gap: 15px;
-    margin-bottom: 20px;
+/* Estilos de ataques e conjuração */
+.attacks-spellcasting {
+    border: 1px solid #ccc;
     padding: 15px;
-    border: 1px solid #deb887;
-    border-radius: 6px;
-    background-color: #f0e68c;
+    border-radius: 8px;
+    background-color: #fff;
+    margin-bottom: 20px;
 }
 
-.attacks-spellcasting .spellcasting-info .form-group {
-    margin-bottom: 8px;
-}
-
-.attacks-spellcasting h4 {
-    margin-top: 20px;
-    border-bottom: 1px solid #d2b48c;
-    padding-bottom: 8px;
+.spellcasting-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    justify-content: space-around;
+    margin-bottom: 20px;
 }
 
 .spell-levels {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    grid-gap: 15px;
-    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 .spell-level {
-    padding: 15px;
-    border: 1px solid #deb887;
-    border-radius: 6px;
-    background-color: #f0e68c;
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+    margin-top: 15px;
 }
 
-.spell-level .slots {
+.slots {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
-.spell-level .slots label {
+.slots label {
+    margin-right: 10px;
     font-weight: bold;
 }
 
-.spell-level .slots input[type="number"] {
-    width: 60px;
+.slots input[type="number"] {
+    width: 50px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 1em;
 }
 
-.spell-level .spells-list {
+.spells-list {
     display: flex;
     flex-direction: column;
-    gap: 6px;
 }
 
-.spell-level .spells-list input[type="text"] {
+.spells-list input[type="text"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    margin-bottom: 5px;
     box-sizing: border-box;
-    font-size: 1em;
 }
 
-.spell-level .spells-list label {
-    font-size: 0.9em;
-}
-
-.attacks-spellcasting table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 15px;
-    border: 1px solid #a9a9a9;
-    border-radius: 5px;
-    overflow: hidden; /* Para garantir que a borda do table e do thead/tbody fiquem consistentes */
-}
-
-.attacks-spellcasting th, .attacks-spellcasting td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-}
-
-.attacks-spellcasting th {
-    background-color: #d2b48c; /* Marrom claro para o cabeçalho da tabela */
-    color: white;
-    font-weight: bold;
-}
-
-.attacks-spellcasting td input[type="text"], .attacks-spellcasting td select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 1em;
-}
-
-.attacks-spellcasting button {
-    padding: 10px 20px;
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.1em;
-    margin-bottom: 15px;
-}
-
-.attacks-spellcasting button:hover {
-    background-color: #4cae4c;
+.spells-list input[type="checkbox"] {
+    margin-right: 5px;
 }
