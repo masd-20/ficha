@@ -107,136 +107,93 @@
     </div>
 
     <div class="section">
+        <h2>Atributos</h2>
+        <label for="str">Força:</label>
+        <input type="number" id="str" placeholder="Força" oninput="calculateModifiers()">
+        
+        <label for="dex">Destreza:</label>
+        <input type="number" id="dex" placeholder="Destreza" oninput="calculateModifiers()">
+
+        <label for="con">Constituição:</label>
+        <input type="number" id="con" placeholder="Constituição" oninput="calculateModifiers()">
+
+        <label for="int">Inteligência:</label>
+        <input type="number" id="int" placeholder="Inteligência" oninput="calculateModifiers()">
+
+        <label for="wis">Sabedoria:</label>
+        <input type="number" id="wis" placeholder="Sabedoria" oninput="calculateModifiers()">
+
+        <label for="cha">Carisma:</label>
+        <input type="number" id="cha" placeholder="Carisma" oninput="calculateModifiers()">
+    </div>
+
+    <div class="section">
         <h2>Perícias</h2>
         <label for="acrobatics">Acrobacia (Dex):</label>
-        <input type="number" id="acrobatics" placeholder="Valor de Acrobacia">
+        <input type="number" id="acrobatics" placeholder="Valor de Acrobacia" readonly>
 
         <label for="animal-handling">Lidar com Animais (Wis):</label>
-        <input type="number" id="animal-handling" placeholder="Valor de Lidar com Animais">
+        <input type="number" id="animal-handling" placeholder="Valor de Lidar com Animais" readonly>
 
         <label for="arcana">Arcanismo (Int):</label>
-        <input type="number" id="arcana" placeholder="Valor de Arcanismo">
+        <input type="number" id="arcana" placeholder="Valor de Arcanismo" readonly>
 
         <label for="athletics">Atletismo (Str):</label>
-        <input type="number" id="athletics" placeholder="Valor de Atletismo">
+        <input type="number" id="athletics" placeholder="Valor de Atletismo" readonly>
 
         <label for="deception">Enganação (Cha):</label>
-        <input type="number" id="deception" placeholder="Valor de Enganação">
+        <input type="number" id="deception" placeholder="Valor de Enganação" readonly>
 
         <label for="history">História (Int):</label>
-        <input type="number" id="history" placeholder="Valor de História">
+        <input type="number" id="history" placeholder="Valor de História" readonly>
 
         <label for="insight">Percepção (Wis):</label>
-        <input type="number" id="insight" placeholder="Valor de Percepção">
+        <input type="number" id="insight" placeholder="Valor de Percepção" readonly>
 
         <label for="intimidation">Intimidação (Cha):</label>
-        <input type="number" id="intimidation" placeholder="Valor de Intimidação">
+        <input type="number" id="intimidation" placeholder="Valor de Intimidação" readonly>
 
         <label for="medicine">Medicina (Wis):</label>
-        <input type="number" id="medicine" placeholder="Valor de Medicina">
+        <input type="number" id="medicine" placeholder="Valor de Medicina" readonly>
 
         <label for="nature">Natureza (Int):</label>
-        <input type="number" id="nature" placeholder="Valor de Natureza">
+        <input type="number" id="nature" placeholder="Valor de Natureza" readonly>
 
         <label for="perception">Percepção (Wis):</label>
-        <input type="number" id="perception" placeholder="Valor de Percepção">
+        <input type="number" id="perception" placeholder="Valor de Percepção" readonly>
 
         <label for="performance">Performance (Cha):</label>
-        <input type="number" id="performance" placeholder="Valor de Performance">
+        <input type="number" id="performance" placeholder="Valor de Performance" readonly>
 
         <label for="persuasion">Persuasão (Cha):</label>
-        <input type="number" id="persuasion" placeholder="Valor de Persuasão">
+        <input type="number" id="persuasion" placeholder="Valor de Persuasão" readonly>
 
         <label for="religion">Religião (Int):</label>
-        <input type="number" id="religion" placeholder="Valor de Religião">
+        <input type="number" id="religion" placeholder="Valor de Religião" readonly>
 
         <label for="sleight-of-hand">Furtividade (Dex):</label>
-        <input type="number" id="sleight-of-hand" placeholder="Valor de Furtividade">
+        <input type="number" id="sleight-of-hand" placeholder="Valor de Furtividade" readonly>
 
         <label for="stealth">Furtividade (Dex):</label>
-        <input type="number" id="stealth" placeholder="Valor de Furtividade">
+        <input type="number" id="stealth" placeholder="Valor de Furtividade" readonly>
 
         <label for="survival">Sobrevivência (Wis):</label>
-        <input type="number" id="survival" placeholder="Valor de Sobrevivência">
+        <input type="number" id="survival" placeholder="Valor de Sobrevivência" readonly>
     </div>
 
     <div class="section">
         <h2>Salvaguardas</h2>
         <label for="str-save">Força:</label>
-        <input type="number" id="str-save" placeholder="Modificador de Salvaguarda de Força">
+        <input type="number" id="str-save" placeholder="Salvaguarda de Força" readonly>
 
         <label for="dex-save">Destreza:</label>
-        <input type="number" id="dex-save" placeholder="Modificador de Salvaguarda de Destreza">
+        <input type="number" id="dex-save" placeholder="Salvaguarda de Destreza" readonly>
 
         <label for="con-save">Constituição:</label>
-        <input type="number" id="con-save" placeholder="Modificador de Salvaguarda de Constituição">
+        <input type="number" id="con-save" placeholder="Salvaguarda de Constituição" readonly>
 
         <label for="int-save">Inteligência:</label>
-        <input type="number" id="int-save" placeholder="Modificador de Salvaguarda de Inteligência">
+        <input type="number" id="int-save" placeholder="Salvaguarda de Inteligência" readonly>
 
         <label for="wis-save">Sabedoria:</label>
-        <input type="number" id="wis-save" placeholder="Modificador de Salvaguarda de Sabedoria">
-
-        <label for="cha-save">Carisma:</label>
-        <input type="number" id="cha-save" placeholder="Modificador de Salvaguarda de Carisma">
-    </div>
-
-    <div class="section" id="feature-section">
-        <h2>Características de Classe</h2>
-        <div id="class-features"></div>
-    </div>
-
-    <div class="section hidden" id="spell-section">
-        <h2>Magias</h2>
-        <label for="spells">Magias Conhecidas:</label>
-        <input type="text" id="spells" placeholder="Digite as magias do personagem">
-    </div>
-
-    <div class="section">
-        <button class="button" onclick="rollDice(20)">Rolar d20</button>
-        <button class="button" onclick="rollDice(6)">Rolar d6</button>
-        <div class="data-display" id="roll-result"></div>
-    </div>
-
-    <script>
-        // Função para alternar a visibilidade de magias e mecânicas de classe
-        function toggleClassFeatures() {
-            var classSelect = document.getElementById("class").value;
-            var spellSection = document.getElementById("spell-section");
-            var featureSection = document.getElementById("feature-section");
-
-            // Limpa as características da classe
-            document.getElementById("class-features").innerHTML = "";
-
-            if (classSelect === "mago" || classSelect === "clerigo") {
-                spellSection.classList.remove("hidden");
-                featureSection.classList.add("hidden");
-            } else if (classSelect === "barbaro") {
-                spellSection.classList.add("hidden");
-                featureSection.classList.remove("hidden");
-                document.getElementById("class-features").innerHTML = "<p>Fúria: Aumento do dano e resistência a danos.</p>";
-            } else if (classSelect === "monge") {
-                spellSection.classList.add("hidden");
-                featureSection.classList.remove("hidden");
-                document.getElementById("class-features").innerHTML = "<p>Pontos de Ki: Permite realizar ações especiais, como ataques adicionais e mobilidade aumentada.</p>";
-            } else {
-                spellSection.classList.add("hidden");
-                featureSection.classList.add("hidden");
-            }
-        }
-
-        // Função para rolar dados
-        function rollDice(sides) {
-            var roll = Math.floor(Math.random() * sides) + 1;
-            document.getElementById("roll-result").innerText = "Resultado: " + roll;
-        }
-
-        // Função para atualizar o número de magias disponíveis
-        function updateSpellInfo() {
-            // Implementação de cálculo de magias com base no nível
-            // Isso pode ser detalhado conforme a classe e o nível do personagem
-        }
-    </script>
-
-</body>
-</html>
+        <input type="number" id="wis-save" placeholder
