@@ -196,4 +196,91 @@
         <input type="number" id="int-save" placeholder="Salvaguarda de Inteligência" readonly>
 
         <label for="wis-save">Sabedoria:</label>
-        <input type="number" id="wis-save" placeholder
+        <input type="number" id="wis-save" placeholder="Salvaguarda de Sabedoria" readonly>
+
+        <label for="cha-save">Carisma:</label>
+        <input type="number" id="cha-save" placeholder="Salvaguarda de Carisma" readonly>
+    </div>
+
+    <div class="section">
+        <h2>Rolagem de Dados</h2>
+        <label for="roll-dice">Escolha o Tipo de Dado (Exemplo: 2d6+1):</label>
+        <input type="text" id="roll-dice" placeholder="Exemplo: 2d6+1">
+        <button class="button" onclick="rollDice()">Rolagem</button>
+        <div class="data-display" id="dice-result"></div>
+    </div>
+
+    <script>
+        // Função para calcular os modificadores de atributos
+        function calculateModifiers() {
+            const attributes = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+            attributes.forEach(attr => {
+                const value = document.getElementById(attr).value;
+                const modifier = value ? Math.floor((parseInt(value) - 10) / 2) : 0;
+                document.getElementById(`${attr}-mod`).value = modifier;
+            });
+
+            // Calculando as perícias com base no modificador
+            updatePerks();
+        }
+
+        // Atualiza as perícias automaticamente
+        function updatePerks() {
+            const perks = {
+                acrobatics: 'dex',
+                animal-handling: 'wis',
+                arcana: 'int',
+                athletics: 'str',
+                deception: 'cha',
+                history: 'int',
+                insight: 'wis',
+                intimidation: 'cha',
+                medicine: 'wis',
+                nature: 'int',
+                perception: 'wis',
+                performance: 'cha',
+                persuasion: 'cha',
+                religion: 'int',
+                sleight-of-hand: 'dex',
+                stealth: 'dex',
+                survival: 'wis'
+            };
+            for (let perk in perks) {
+                const attribute = perks[perk];
+                const modifier = document.getElementById(`${attribute}-mod`).value;
+                document.getElementById(perk).value = modifier;
+            }
+        }
+
+        // Função para rolar dados
+        function rollDice() {
+            const diceInput = document.getElementById('roll-dice').value;
+            const regex = /^(\d+)d(\d+)([+-]?\d+)?$/;
+
+            if (regex.test(diceInput)) {
+                const match = diceInput.match(regex);
+                const numDice = parseInt(match[1]);
+                const sides = parseInt(match[2]);
+                const modifier = match[3] ? parseInt(match[3]) : 0;
+
+                let result = 0;
+                let rolls = [];
+
+                for (let i = 0; i < numDice; i++) {
+                    const roll = Math.floor(Math.random() * sides) + 1;
+                    rolls.push(roll);
+                    result += roll;
+                }
+
+                result += modifier;
+
+                // Exibindo os resultados
+                document.getElementById('dice-result').innerHTML = `Rolagens: ${rolls.join(', ')}<br>Resultado Final: ${result}`;
+            } else {
+                document.getElementById('dice-result').innerHTML = "Formato inválido. Use algo como 2d6+1.";
+            }
+        }
+    </script>
+
+</body>
+</html>
