@@ -69,7 +69,22 @@
       <h2>Personagem</h2>
       <input placeholder="Nome do Personagem" />
       <input placeholder="Raça" />
-      <input placeholder="Classe e Nível" />
+      <select id="classe" onchange="atualizaFicha()">
+        <option value="">Escolha a classe</option>
+        <option value="barbaro">Bárbaro</option>
+        <option value="bardo">Bardo</option>
+        <option value="bruxo">Bruxo</option>
+        <option value="clerigo">Clérigo</option>
+        <option value="druida">Druida</option>
+        <option value="feiticeiro">Feiticeiro</option>
+        <option value="guerreiro">Guerreiro</option>
+        <option value="ladino">Ladino</option>
+        <option value="mago">Mago</option>
+        <option value="monge">Monge</option>
+        <option value="paladino">Paladino</option>
+        <option value="patrulheiro">Patrulheiro</option>
+      </select>
+      <input placeholder="Nível" id="nivel" type="number" min="1" max="20" />
       <input placeholder="Alinhamento" />
     </div>
 
@@ -98,7 +113,7 @@
       <textarea rows="4" placeholder="Anote aqui seus itens..."></textarea>
     </div>
 
-    <div class="section">
+    <div id="magia-section" class="section" style="display: none;">
       <h2>Magias</h2>
       <textarea rows="4" placeholder="Magias conhecidas e espaços..."></textarea>
     </div>
@@ -126,6 +141,12 @@
       const entry = document.createElement('div');
       entry.textContent = `Rolou ${diceType}: ${result}`;
       log.prepend(entry);
+    }
+
+    function atualizaFicha() {
+      const classe = document.getElementById('classe').value;
+      const conjuradoras = ['mago', 'clerigo', 'druida', 'feiticeiro', 'bruxo', 'bardo', 'paladino', 'patrulheiro'];
+      document.getElementById('magia-section').style.display = conjuradoras.includes(classe) ? 'block' : 'none';
     }
   </script>
 </body>
