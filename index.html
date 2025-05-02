@@ -76,14 +76,18 @@
             <input type="text" id="name" placeholder="Nome do Personagem">
 
             <label for="class">Classe:</label>
-            <select id="class" onchange="toggleSpells()">
+            <select id="class" onchange="toggleClassFeatures()">
                 <option value="">Selecione a Classe</option>
-                <option value="conjurador">Conjurador</option>
-                <option value="nao-conjurador">Não Conjurador</option>
+                <option value="barbaro">Bárbaro</option>
+                <option value="monge">Monge</option>
+                <option value="mago">Mago</option>
+                <option value="clerigo">Clérigo</option>
+                <option value="ladino">Ladino</option>
+                <option value="guerreiro">Guerreiro</option>
             </select>
 
             <label for="level">Nível:</label>
-            <input type="number" id="level" placeholder="Nível do Personagem">
+            <input type="number" id="level" placeholder="Nível do Personagem" oninput="updateSpellInfo()">
 
             <label for="race">Raça:</label>
             <input type="text" id="race" placeholder="Raça do Personagem">
@@ -177,6 +181,11 @@
         <input type="number" id="cha-save" placeholder="Modificador de Salvaguarda de Carisma">
     </div>
 
+    <div class="section" id="feature-section">
+        <h2>Características de Classe</h2>
+        <div id="class-features"></div>
+    </div>
+
     <div class="section hidden" id="spell-section">
         <h2>Magias</h2>
         <label for="spells">Magias Conhecidas:</label>
@@ -190,15 +199,29 @@
     </div>
 
     <script>
-        // Função para alternar a visibilidade da seção de magias com base na classe
-        function toggleSpells() {
+        // Função para alternar a visibilidade de magias e mecânicas de classe
+        function toggleClassFeatures() {
             var classSelect = document.getElementById("class").value;
             var spellSection = document.getElementById("spell-section");
+            var featureSection = document.getElementById("feature-section");
 
-            if (classSelect === "conjurador") {
+            // Limpa as características da classe
+            document.getElementById("class-features").innerHTML = "";
+
+            if (classSelect === "mago" || classSelect === "clerigo") {
                 spellSection.classList.remove("hidden");
+                featureSection.classList.add("hidden");
+            } else if (classSelect === "barbaro") {
+                spellSection.classList.add("hidden");
+                featureSection.classList.remove("hidden");
+                document.getElementById("class-features").innerHTML = "<p>Fúria: Aumento do dano e resistência a danos.</p>";
+            } else if (classSelect === "monge") {
+                spellSection.classList.add("hidden");
+                featureSection.classList.remove("hidden");
+                document.getElementById("class-features").innerHTML = "<p>Pontos de Ki: Permite realizar ações especiais, como ataques adicionais e mobilidade aumentada.</p>";
             } else {
                 spellSection.classList.add("hidden");
+                featureSection.classList.add("hidden");
             }
         }
 
@@ -206,6 +229,12 @@
         function rollDice(sides) {
             var roll = Math.floor(Math.random() * sides) + 1;
             document.getElementById("roll-result").innerText = "Resultado: " + roll;
+        }
+
+        // Função para atualizar o número de magias disponíveis
+        function updateSpellInfo() {
+            // Implementação de cálculo de magias com base no nível
+            // Isso pode ser detalhado conforme a classe e o nível do personagem
         }
     </script>
 
