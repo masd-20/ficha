@@ -1,153 +1,162 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ficha de D&D 5e</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Cinzel', serif;
-      background: url('https://i.imgur.com/eBv0w6v.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #f5f5dc;
-    }
-    .container {
-      max-width: 960px;
-      margin: auto;
-      padding: 2rem;
-      background-color: rgba(0, 0, 0, 0.8);
-      border-radius: 12px;
-      box-shadow: 0 0 20px #000;
-    }
-    h1, h2 {
-      text-align: center;
-      color: #ffd700;
-    }
-    input, textarea, select {
-      width: 100%;
-      padding: 0.5rem;
-      margin: 0.5rem 0;
-      background: #222;
-      color: #ffd700;
-      border: 1px solid #555;
-      border-radius: 4px;
-    }
-    .stat-block {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 0.5rem;
-      text-align: center;
-    }
-    .section {
-      margin-top: 2rem;
-    }
-    .dice-buttons button {
-      background: #444;
-      color: #ffd700;
-      border: 1px solid #777;
-      border-radius: 4px;
-      padding: 0.5rem;
-      margin: 0.25rem;
-      cursor: pointer;
-    }
-    #roll-log {
-      background: #111;
-      padding: 1rem;
-      height: 150px;
-      overflow-y: scroll;
-      border: 1px solid #555;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ficha de Personagem D&D 5e</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .container > div {
+            width: 48%;
+        }
+
+        label, input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        .section {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .data-display {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Ficha de D&D 5e</h1>
 
-    <div class="section">
-      <h2>Personagem</h2>
-      <input placeholder="Nome do Personagem" />
-      <input placeholder="Raça" />
-      <select id="classe" onchange="atualizaFicha()">
-        <option value="">Escolha a classe</option>
-        <option value="barbaro">Bárbaro</option>
-        <option value="bardo">Bardo</option>
-        <option value="bruxo">Bruxo</option>
-        <option value="clerigo">Clérigo</option>
-        <option value="druida">Druida</option>
-        <option value="feiticeiro">Feiticeiro</option>
-        <option value="guerreiro">Guerreiro</option>
-        <option value="ladino">Ladino</option>
-        <option value="mago">Mago</option>
-        <option value="monge">Monge</option>
-        <option value="paladino">Paladino</option>
-        <option value="patrulheiro">Patrulheiro</option>
-      </select>
-      <input placeholder="Nível" id="nivel" type="number" min="1" max="20" />
-      <input placeholder="Alinhamento" />
+    <h1>Ficha de Personagem D&D 5e</h1>
+
+    <div class="container">
+        <div class="section">
+            <h2>Dados Gerais</h2>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" placeholder="Nome do Personagem">
+
+            <label for="class">Classe:</label>
+            <select id="class" onchange="toggleSpells()">
+                <option value="">Selecione a Classe</option>
+                <option value="conjurador">Conjurador</option>
+                <option value="nao-conjurador">Não Conjurador</option>
+            </select>
+
+            <label for="level">Nível:</label>
+            <input type="number" id="level" placeholder="Nível do Personagem">
+
+            <label for="race">Raça:</label>
+            <input type="text" id="race" placeholder="Raça do Personagem">
+        </div>
+
+        <div class="section">
+            <h2>Pontos de Vida</h2>
+            <label for="max-hp">PV Máximo:</label>
+            <input type="number" id="max-hp" placeholder="Pontos de Vida Máximos">
+
+            <label for="current-hp">PV Atual:</label>
+            <input type="number" id="current-hp" placeholder="Pontos de Vida Atuais">
+
+            <label for="temp-hp">PV Temporário:</label>
+            <input type="number" id="temp-hp" placeholder="Pontos de Vida Temporários">
+        </div>
     </div>
 
     <div class="section">
-      <h2>Atributos</h2>
-      <div class="stat-block">
-        <input placeholder="Força" />
-        <input placeholder="Destreza" />
-        <input placeholder="Constituição" />
-        <input placeholder="Inteligência" />
-        <input placeholder="Sabedoria" />
-        <input placeholder="Carisma" />
-      </div>
+        <h2>Perícias</h2>
+        <label for="acrobatics">Acrobacia:</label>
+        <input type="number" id="acrobatics" placeholder="Valor da Perícia de Acrobacia">
+
+        <label for="athletics">Atletismo:</label>
+        <input type="number" id="athletics" placeholder="Valor da Perícia de Atletismo">
+
+        <label for="stealth">Furtividade:</label>
+        <input type="number" id="stealth" placeholder="Valor da Perícia de Furtividade">
     </div>
 
     <div class="section">
-      <h2>Combate</h2>
-      <input placeholder="Classe de Armadura (CA)" />
-      <input placeholder="Iniciativa" />
-      <input placeholder="Deslocamento" />
-      <input placeholder="Pontos de Vida (PV)" />
+        <h2>Salvaguardas</h2>
+        <label for="str-save">Força:</label>
+        <input type="number" id="str-save" placeholder="Modificador de Salvaguarda de Força">
+
+        <label for="dex-save">Destreza:</label>
+        <input type="number" id="dex-save" placeholder="Modificador de Salvaguarda de Destreza">
+
+        <label for="con-save">Constituição:</label>
+        <input type="number" id="con-save" placeholder="Modificador de Salvaguarda de Constituição">
+    </div>
+
+    <div class="section hidden" id="spell-section">
+        <h2>Magias</h2>
+        <label for="spells">Magias Conhecidas:</label>
+        <input type="text" id="spells" placeholder="Digite as magias do personagem">
     </div>
 
     <div class="section">
-      <h2>Inventário</h2>
-      <textarea rows="4" placeholder="Anote aqui seus itens..."></textarea>
+        <button class="button" onclick="rollDice(20)">Rolar d20</button>
+        <button class="button" onclick="rollDice(6)">Rolar d6</button>
+        <div class="data-display" id="roll-result"></div>
     </div>
 
-    <div id="magia-section" class="section" style="display: none;">
-      <h2>Magias</h2>
-      <textarea rows="4" placeholder="Magias conhecidas e espaços..."></textarea>
-    </div>
+    <script>
+        // Função para alternar a visibilidade da seção de magias com base na classe
+        function toggleSpells() {
+            var classSelect = document.getElementById("class").value;
+            var spellSection = document.getElementById("spell-section");
 
-    <div class="section">
-      <h2>Rolagem de Dados</h2>
-      <div class="dice-buttons">
-        <button onclick="roll('d4')">D4</button>
-        <button onclick="roll('d6')">D6</button>
-        <button onclick="roll('d8')">D8</button>
-        <button onclick="roll('d10')">D10</button>
-        <button onclick="roll('d12')">D12</button>
-        <button onclick="roll('d20')">D20</button>
-        <button onclick="roll('d100')">D100</button>
-      </div>
-      <div id="roll-log"></div>
-    </div>
-  </div>
+            if (classSelect === "conjurador") {
+                spellSection.classList.remove("hidden");
+            } else {
+                spellSection.classList.add("hidden");
+            }
+        }
 
-  <script>
-    function roll(diceType) {
-      const sides = parseInt(diceType.replace('d', ''));
-      const result = Math.floor(Math.random() * sides) + 1;
-      const log = document.getElementById('roll-log');
-      const entry = document.createElement('div');
-      entry.textContent = `Rolou ${diceType}: ${result}`;
-      log.prepend(entry);
-    }
+        // Função para rolar dados
+        function rollDice(sides) {
+            var roll = Math.floor(Math.random() * sides) + 1;
+            document.getElementById("roll-result").innerText = "Resultado: " + roll;
+        }
+    </script>
 
-    function atualizaFicha() {
-      const classe = document.getElementById('classe').value;
-      const conjuradoras = ['mago', 'clerigo', 'druida', 'feiticeiro', 'bruxo', 'bardo', 'paladino', 'patrulheiro'];
-      document.getElementById('magia-section').style.display = conjuradoras.includes(classe) ? 'block' : 'none';
-    }
-  </script>
 </body>
 </html>
